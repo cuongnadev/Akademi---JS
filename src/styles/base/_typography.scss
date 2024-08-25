@@ -21,7 +21,7 @@ body {
 }
   
 @mixin font-button {
-    @include font($text-sm, $font-medium);
+    @include font($text-base, $font-regular);
     font-family: $font-primary;
     letter-spacing: 0.25px;
     text-transform: capitalize;

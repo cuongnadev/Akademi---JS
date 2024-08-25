@@ -18,18 +18,13 @@ export class LoginForm extends Form {
         // global container
         this.container = createContainer("form-container");
     
-        // container 1 children --------------------
-        // 1. Title
+        // container 1 children 
+        // Title
         this.title = document.createElement("h1");
         this.title.className = "form-title-1";
         this.title.textContent = "Login";
     
-        // 2. Forgot password link
-        this.forgotPassword = new Link("#");
-        this.forgotPassword.link.className = "form-link";
-        this.forgotPassword.link.textContent = "Forgot your password?";
-    
-        // sub-container 
+        // container-1
         this.container1 = createContainer(
             "form-login-container-1",
             this.title,
@@ -59,14 +54,25 @@ export class LoginForm extends Form {
         this.keepLoggedCheckbox = new Checkbox("keepLogin", "form-checkbox", [
             "Keep me logged in",
         ]);
+
+        // 4. Forgot password link
+        this.forgotPassword = new Link("#");
+        this.forgotPassword.link.className = "form-link";
+        this.forgotPassword.link.textContent = "Forgot your password?";
+
+        this.container2 = createContainer(
+            "form-login-container-2",
+            this.keepLoggedCheckbox.render(),
+            this.forgotPassword.render()
+        );
     
-        // 4. Login button
+        // 5. Login button
         this.loginButton = new Button(
             "Login",
             null,
             null,
             buttonVariants.filled,
-            buttonSizes.lg,
+            buttonSizes.sm,
             "",
             () => {}
         );
@@ -75,8 +81,7 @@ export class LoginForm extends Form {
         this.form.append(
             this.emailInput.render(),
             this.passwordInput.render(),
-            this.keepLoggedCheckbox.render(),
-            this.forgotPassword.render(),
+            this.container2,
             this.loginButton.render()
         );
   

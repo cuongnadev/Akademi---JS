@@ -1,14 +1,12 @@
 export const buttonVariants = {
     filled: "btn-filled",
     outlined: "btn-outlined",
-
     iconOnly: "",
 };
   
 export const buttonSizes = {
     sm: "btn-sm",
     md: "btn-md",
-    lg: "btn-lg",
     iconOnly: "",
 };
   
