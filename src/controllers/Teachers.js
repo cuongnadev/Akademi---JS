@@ -1,4 +1,1 @@
-
-export class TeachersController {
-    
-}
+export class TeachersController {}

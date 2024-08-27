@@ -1,4 +1,1 @@
-
-export class NotifyActivityController {
-    
-}
+export class NotifyActivityController {}

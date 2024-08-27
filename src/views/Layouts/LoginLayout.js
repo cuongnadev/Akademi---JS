@@ -1,20 +1,20 @@
-import { createContainer } from "~/utils";
+import { createContainer } from '~/utils';
 
 export class LoginLayout {
     /**
-        *
-        * @param {LoginForm | RegisterForm} form
-   */
+     *
+     * @param {LoginForm | RegisterForm} form
+     */
     constructor(form) {
-    // login_layout
+        // login_layout
 
-    // global container
-    this.container = createContainer("login_layout-container");
+        // global container
+        this.container = createContainer('login_layout-container');
         // form
         this.form = form;
 
         // add elements to global container
-        this.container.append( this.form.render() );
+        this.container.append(this.form.render());
     }
 
     render() {

@@ -1,4 +1,4 @@
-import { Router } from "~/routes";
+import { Router } from '~/routes';
 
 const routes = {
     home: '/',
@@ -24,63 +24,45 @@ export const getPath = {
     [routes.students]: () => routes.students,
     [routes.teachers]: () => routes.teachers,
     [routes.singleStudent]() {
-        const { studentId } = Router.extractParams(
-            location.pathname,
-            routes.singleStudent
-        );
-        return routes.singleStudent.replace(":studentId", studentId);
+        const { studentId } = Router.extractParams(location.pathname, routes.singleStudent);
+        return routes.singleStudent.replace(':studentId', studentId);
     },
     [routes.singleTeacher]() {
-        const { teacherId } = Router.extractParams(
-            location.pathname,
-            routes.singleTeacher
-        );
-        return routes.singleTeacher.replace(":teacherId", teacherId);
+        const { teacherId } = Router.extractParams(location.pathname, routes.singleTeacher);
+        return routes.singleTeacher.replace(':teacherId', teacherId);
     },
     [routes.studentDetail]() {
-        const { studentId } = Router.extractParams(
-            location.pathname,
-            routes.studentDetail
-        );
-        return routes.studentDetail.replace(":studentId", studentId);
+        const { studentId } = Router.extractParams(location.pathname, routes.studentDetail);
+        return routes.studentDetail.replace(':studentId', studentId);
     },
     [routes.teacherDetail]() {
-        const { teacherId } = Router.extractParams(
-            location.pathname,
-            routes.teacherDetail
-        );
-        return routes.teacherDetail.replace(":teacherId", teacherId);
+        const { teacherId } = Router.extractParams(location.pathname, routes.teacherDetail);
+        return routes.teacherDetail.replace(':teacherId', teacherId);
     },
     [routes.studentAddNew]: () => routes.studentAddNew,
     [routes.teacherAddNew]: () => routes.teacherAddNew,
     [routes.events]: () => routes.events,
     [routes.user]: () => routes.user,
     [routes.singleUserContact]: () => {
-        const { userId } = Router.extractParams(
-            location.pathname,
-            routes.singleUserContact
-        );
-        return routes.singleUserContact.replace(":userId", userId);
+        const { userId } = Router.extractParams(location.pathname, routes.singleUserContact);
+        return routes.singleUserContact.replace(':userId', userId);
     },
     [routes.singleUserMessage]: () => {
-        const { userId } = Router.extractParams(
-            location.pathname,
-            routes.singleUserMessage
-        );
-        return routes.singleUserMessage.replace(":userId", userId);
+        const { userId } = Router.extractParams(location.pathname, routes.singleUserMessage);
+        return routes.singleUserMessage.replace(':userId', userId);
     },
     [routes.notifyActivity]: () => routes.notifyActivity,
     [routes.login]: () => routes.login,
-    [routes.register]: () => routes.register
+    [routes.register]: () => routes.register,
 };
-  
+
 export const breadcrumbs = {
-    [routes.home]: "Dashboard",
-    [routes.students]: "Students",
-    [routes.teachers]: "Teacher",
-    [routes.events]: "Event",
-    [routes.user]: "User",
-    [routes.notifyActivity]: "Lastest Activity"
+    [routes.home]: 'Dashboard',
+    [routes.students]: 'Students',
+    [routes.teachers]: 'Teacher',
+    [routes.events]: 'Event',
+    [routes.user]: 'User',
+    [routes.notifyActivity]: 'Lastest Activity',
 };
 
 export default routes;

@@ -1,6 +1,12 @@
 {
-    "admins": [
-      { "id": 1, "username": "admin", "password": "password123" }
-    ]
+  "admins": [
+    {
+      "id": "1",
+      "firstName": "cuong",
+      "lastName": "nguyen",
+      "email": "cuongna@gmail.com",
+      "password": "040405@Nac",
+      "address": "Gia lai"
+    }
+  ]
 }
-  

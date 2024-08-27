@@ -1,4 +1,1 @@
-
-export class EventsController {
-
-}
+export class EventsController {}

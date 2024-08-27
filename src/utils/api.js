@@ -1,8 +1,10 @@
 export const apiEndpoint = {
     adminAuthentication() {
-        return `/api/admin-authentication`;
+        // http request GET
+        return `/api/admins`;
     },
     register() {
+        // http request POST
         return `/api/admins`;
     },
     getStudents() {
@@ -36,15 +38,15 @@ export const apiEndpoint = {
         return `/api/teachers`;
     },
     patchStudent(studentId) {
-        return `/api/students/${studentId}`;  
+        return `/api/students/${studentId}`;
     },
     patchTeacher(teacherId) {
-        return `/api/teachers/${teacherId}`;  
+        return `/api/teachers/${teacherId}`;
     },
     deleteStudent(studentId) {
-        return `/api/students/${studentId}`;  
+        return `/api/students/${studentId}`;
     },
     deleteTeacher(teacherId) {
-        return `/api/teachers/${teacherId}`; 
+        return `/api/teachers/${teacherId}`;
     },
 };

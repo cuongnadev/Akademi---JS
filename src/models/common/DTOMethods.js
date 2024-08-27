@@ -1,4 +1,4 @@
-export class DTOMethod {
+export class DTOMethods {
     response() {}
     getAuthenticationBody() {}
 }
