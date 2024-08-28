@@ -1,4 +1,1 @@
-
-export class DashboardController {
-    
-}
+export class DashboardController {}

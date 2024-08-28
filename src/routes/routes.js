@@ -1,10 +1,7 @@
 import config from '~/config';
 
 // layouts
-import {    
-    PrimaryLayout,
-    SecondaryLayout
-} from "~/views/Layouts";
+import { PrimaryLayout, SecondaryLayout } from '~/views/Layouts';
 
 // pages
 import {
@@ -18,13 +15,13 @@ import {
     AddNewStudent,
     AddNewTeacher,
     NotifyActivity,
-    Login
-} from "~/views/pages";
+    Login,
+} from '~/views/pages';
 
 // public
 const publicRoutes = [
     {
-        path: "",
+        path: '',
         component: new PrimaryLayout(),
         children: [
             { path: config.routes.home, component: Dashboard },
@@ -34,10 +31,10 @@ const publicRoutes = [
             { path: config.routes.singleUserContact, component: User },
             { path: config.routes.singleUserMessage, component: User },
             { path: config.routes.events, component: Events },
-        ] 
+        ],
     },
     {
-        path: "",
+        path: '',
         component: new SecondaryLayout(),
         children: [
             { path: config.routes.students, component: Students },
@@ -47,10 +44,10 @@ const publicRoutes = [
             { path: config.routes.studentAddNew, component: AddNewStudent },
             { path: config.routes.teacherAddNew, component: AddNewTeacher },
             { path: config.routes.notifyActivity, component: NotifyActivity },
-        ] 
+        ],
     },
-    // { path: config.routes.login, component: new Login },
-    // { path: config.routes.register, component: new Login(true) },
+    { path: config.routes.login, component: new Login() },
+    { path: config.routes.register, component: new Login(true) },
 ];
 
 // private

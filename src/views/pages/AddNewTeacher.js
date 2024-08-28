@@ -1,3 +1,1 @@
-export class AddNewTeacher {
-    
-}
+export class AddNewTeacher {}

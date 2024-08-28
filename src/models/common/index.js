@@ -1,1 +1,1 @@
-export * from "./DTOMethod";
+export * from './DTOMethods';

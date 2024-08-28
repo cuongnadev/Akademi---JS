@@ -1,3 +1,1 @@
-export class NotifyActivity {
-    
-}
+export class NotifyActivity {}

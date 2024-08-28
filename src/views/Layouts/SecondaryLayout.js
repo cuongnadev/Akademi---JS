@@ -1,3 +1,1 @@
-export class SecondaryLayout {
-    
-}
+export class SecondaryLayout {}
