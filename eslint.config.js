@@ -1,6 +1,8 @@
 /** @type {import('eslint').Linter.FlatConfig} */
-import prettier from 'prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+
+const { rules: prettierRules } = eslintConfigPrettier;
 
 export default [
     {
@@ -11,7 +13,6 @@ export default [
                 __dirname: 'readable',
                 __filename: 'readable',
                 process: 'readable',
-                // Thêm các biến toàn cục khác nếu cần
             },
             parserOptions: {
                 ecmaVersion: 'latest',
@@ -19,17 +20,16 @@ export default [
             },
         },
         plugins: {
-            // Bao gồm plugin 'prettier' để sử dụng các quy tắc của prettier
             prettier: eslintPluginPrettier,
         },
         rules: {
-            // Các quy tắc Prettier được bao gồm thông qua plugin
-            'prettier/prettier': 'error',
-        },
-        // Bao gồm cấu hình Prettier trực tiếp
-        settings: {
-            prettier,
+            'prettier/prettier': 'error', // Áp dụng quy tắc Prettier
         },
     },
-    // Bao gồm các cấu hình khác nếu cần
+    // Sử dụng eslint-config-prettier để tắt các quy tắc xung đột
+    {
+        rules: {
+            ...prettierRules,
+        },
+    },
 ];

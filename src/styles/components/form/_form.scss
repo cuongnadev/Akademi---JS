@@ -24,10 +24,10 @@
             @include font-heading($text-4xl);
         }
         &-2 {
-            @include font($text-3xl, $font-semibold);
+            @include font($text-xl, $font-semibold);
         }
         &-3 {
-            @include font($text-xl, $font-medium);
+            @include font($text-lg, $font-medium);
         }
     }
   

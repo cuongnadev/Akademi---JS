@@ -1,6 +1,7 @@
 import { Router } from '~/routes';
 import { apiEndpoint } from '~/utils';
 import { Admin } from '~/models/dto';
+import { Toast } from '~/views/components/Toast';
 
 export class LoginController {
     static async authentication(
@@ -51,15 +52,39 @@ export class LoginController {
                 throw new Error('Invalid login credentials');
             }
         } catch (error) {
+            let errorMessage = error.message;
             // Xử lý khi đăng nhập thất bại
             if (isAlert) {
-                console.error(error.message);
+                Toast.render({ title: 'Error', message: errorMessage, type: 'ERROR' });
             }
 
             result(false);
 
             localStorage.removeItem('admin');
             sessionStorage.removeItem('admin');
+        }
+    }
+
+    static async register(admin) {
+        try {
+            const response = await fetch(apiEndpoint.register(), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(admin.getRegisterBody()),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Register failed');
+            }
+
+            Router.pushState('/login');
+
+            Toast.render({ title: 'Success', message: 'Registration successful', type: 'SUCCESS' });
+        } catch (error) {
+            Toast.render({ title: 'Error', message: `Registration error: ${error.message}`, type: 'ERROR' });
         }
     }
 }
