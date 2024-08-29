@@ -23,6 +23,11 @@ import teacher from '~/assets/icons/Teacher.svg';
 import trending from '~/assets/icons/Trending.svg';
 import user from '~/assets/icons/User.svg';
 import video from '~/assets/icons/Video.svg';
+import checkSuccess from '~/assets/icons/CheckSuccess.svg';
+import error from '~/assets/icons/Error.svg';
+import warning from '~/assets/icons/Warning.svg';
+import info from '~/assets/icons/InfoCircle.svg';
+import xmark from '~/assets/icons/Xmark.svg';
 
 const loadSvg = async (filePath) => {
     try {
@@ -60,6 +65,11 @@ export const [
     trendingIcon,
     userIcon,
     videoIcon,
+    checkSuccessIcon,
+    errorIcon,
+    warningIcon,
+    infoIcon,
+    xmarkIcon,
 ] = await Promise.all([
     loadSvg(activity),
     loadSvg(attachment),
@@ -86,4 +96,9 @@ export const [
     loadSvg(trending),
     loadSvg(user),
     loadSvg(video),
+    loadSvg(checkSuccess),
+    loadSvg(error),
+    loadSvg(warning),
+    loadSvg(info),
+    loadSvg(xmark),
 ]);

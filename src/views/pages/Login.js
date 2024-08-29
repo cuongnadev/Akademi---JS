@@ -1,5 +1,5 @@
 import { createContainer } from '~/utils';
-import { LoginForm } from '../components';
+import { LoginForm, RegisterForm } from '../components';
 import { LoginLayout } from '../Layouts';
 import { Admin } from '~/models/dto';
 import { LoginController } from '~/controllers';
@@ -12,10 +12,7 @@ export class Login {
         this.container = createContainer('login-container');
 
         // login layout
-        this.loginLayout = new LoginLayout(
-            new LoginForm(),
-            // isRegister ? new RegisterForm() : new LoginForm()
-        );
+        this.loginLayout = new LoginLayout(isRegister ? new RegisterForm() : new LoginForm());
 
         this.formData = this.loginLayout.form;
 
@@ -38,6 +35,7 @@ export class Login {
                         lastName: this.formData.lastNameInput.input.value,
                         email: this.formData.emailInput.input.value,
                         password: this.formData.passwordInput.input.value,
+                        address: this.formData.addressInput.input.value,
                     }),
                 );
             }

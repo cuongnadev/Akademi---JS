@@ -62,4 +62,28 @@ export class LoginController {
             sessionStorage.removeItem('admin');
         }
     }
+
+    static async register(admin) {
+        try {
+            const response = await fetch(apiEndpoint.register(), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(admin.getRegisterBody()),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Register failed');
+            }
+
+            const data = await response.json();
+            console.log('Registration successful:', data);
+
+            Router.pushState('/login');
+        } catch (error) {
+            console.error('Registration error:', error.message);
+        }
+    }
 }

@@ -7,6 +7,14 @@
       "email": "cuongna@gmail.com",
       "password": "040405@Nac",
       "address": "Gia lai"
+    },
+    {
+      "id": "2be4",
+      "firstName": "Chiến",
+      "lastName": "Doãn",
+      "email": "chiendv@gmail.com",
+      "password": "123123123",
+      "address": "Tam Kì, Đà Nẵng"
     }
   ]
 }
