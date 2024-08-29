@@ -1,7 +1,8 @@
 /** @type {import('eslint').Linter.FlatConfig} */
-import prettier from 'prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
+
+const { rules: prettierRules } = eslintConfigPrettier;
 
 export default [
     {
@@ -22,11 +23,13 @@ export default [
             prettier: eslintPluginPrettier,
         },
         rules: {
-            ...eslintConfigPrettier.rules, // Kết hợp các quy tắc của eslint-config-prettier
-            'prettier/prettier': 'error',
+            'prettier/prettier': 'error', // Áp dụng quy tắc Prettier
         },
-        settings: {
-            prettier,
+    },
+    // Sử dụng eslint-config-prettier để tắt các quy tắc xung đột
+    {
+        rules: {
+            ...prettierRules,
         },
     },
 ];

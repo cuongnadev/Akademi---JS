@@ -15,6 +15,22 @@
       "email": "chiendv@gmail.com",
       "password": "123123123",
       "address": "Tam Kì, Đà Nẵng"
+    },
+    {
+      "id": "1b20",
+      "firstName": "Thi",
+      "lastName": "Đông",
+      "email": "Thivhd@gmail.com",
+      "password": "0410-Thi",
+      "address": "Đà Nẵng"
+    },
+    {
+      "id": "a87c",
+      "firstName": "Loan",
+      "lastName": "Kiều",
+      "email": "Loanltk@gmail.com",
+      "password": "00000000",
+      "address": "Quảng Trị"
     }
   ]
 }
