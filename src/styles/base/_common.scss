@@ -15,7 +15,7 @@
 }
 
 .flex-1 {
-    flex: 1;    
+    flex: 1;
 }
 
 .h-full {
@@ -29,7 +29,7 @@
     }
     @for $i from 0 through 5 {
         &-#{$i} {
-        flex: $i;
+            flex: $i;
         }
     }
 }

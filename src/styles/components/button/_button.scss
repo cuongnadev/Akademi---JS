@@ -8,15 +8,15 @@
     justify-content: center;
     gap: 0.25rem;
     border: 1px solid transparent;
-  
+
     * {
         pointer-events: none;
     }
-  
+
     &:disabled {
         opacity: 0.4;
     }
-  
+
     &-sm {
         padding: 10px 24px;
     }
@@ -28,7 +28,7 @@
         background-color: $Purple;
         color: white;
     }
-  
+
     &-outlined {
         background-color: transparent;
         border-color: $Purple;

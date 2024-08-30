@@ -4,9 +4,8 @@ $mobile-large: 767px;
 $tablet: 1024px;
 $pc-small: 1312px;
 $pc-medium: 1575px;
-$pc-large: 1901px; 
-$pc-xlarge: 1920px; 
-
+$pc-large: 1901px;
+$pc-xlarge: 1920px;
 
 @mixin mobile-small {
     @media screen and (max-width: $mobile-small) {
