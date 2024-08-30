@@ -6,7 +6,7 @@
     border-radius: 40px;
     padding: 16px;
     caret-color: $Purple;
-  
+
     &:focus {
         border: 1px solid $Purple;
     }
@@ -20,15 +20,15 @@
         flex-direction: column;
         align-items: start;
         gap: 1rem;
-  
+
         &-label {
             @include font-heading($text-xl);
-    
+
             @include mobile-large {
                 @include font-heading($text-base);
             }
         }
-  
+
         &-input_field {
             width: 100%;
         }
