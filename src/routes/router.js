@@ -92,7 +92,7 @@ export class Router {
                         } else {
                             childNode = new route2.component();
                         }
-                        childNode = route1.component.render(childNode.render());
+                        childNode = route1.component.render(childNode);
                         return { childNode, componentPath, params };
                     }
                 }
