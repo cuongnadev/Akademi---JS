@@ -24,7 +24,6 @@ const publicRoutes = [
         path: '',
         component: new PrimaryLayout(),
         children: [
-            { path: config.routes.home, component: Dashboard },
             { path: config.routes.students, component: Students },
             { path: config.routes.teachers, component: Teachers },
             { path: config.routes.studentDetail, component: StudentDetail },
@@ -41,6 +40,7 @@ const publicRoutes = [
         path: '',
         component: new SecondaryLayout(),
         children: [
+            { path: config.routes.home, component: Dashboard },
             { path: config.routes.user, component: User },
             { path: config.routes.singleUserContact, component: User },
             { path: config.routes.singleUserMessage, component: User },

@@ -18,7 +18,8 @@ export class PrimaryLayout {
 
         // Header
         this.header = new Header();
-        this.header.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
+        this.header.container.classList.add('primary');
+        this.header.headerActions.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
 
         // Navigation sidebar
         this.navSidebar = new NavSidebar();
