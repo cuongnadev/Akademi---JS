@@ -1,6 +1,6 @@
 .header {
     &-container {
-        padding: 50px 50px 46px 0;
+        padding: 50px 50px 40px 0;
         justify-content: space-between;
     }
 
@@ -61,5 +61,52 @@
         object-fit: cover;
         flex-shrink: 0;
         cursor: pointer;
+    }
+}
+.search {
+    &-container {
+        padding: 2px 32px 2px 0px;
+        position: relative;
+        width: 350px;
+        height: 60px;
+        border-radius: 40px;
+        background-color: $White;
+        flex-shrink: 0;
+    }
+
+    &-input {
+        height: 60px;
+        border: none;
+        outline: none;
+        border-radius: none;
+        background: $White;
+        flex: 1;
+
+        &::placeholder {
+            @include font($text-base, $font-regular);
+            color: $Gray-3;
+        }
+
+        &:focus {
+            outline: none;
+            border: none;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        justify-content: end;
+        box-shadow: none;
+        border-radius: 40px 0 0 40px;
+        background-color: $White;
+    }
+}
+.primary .search {
+    display: none;
+}
+.secondary { 
+    padding-right: 0;
+    & .header-actions {
+        display: none;
     }
 }
