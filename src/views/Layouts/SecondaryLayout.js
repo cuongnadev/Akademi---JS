@@ -1,5 +1,5 @@
 import { createContainer } from '~/utils';
-import { NavSidebar, Header, headerActions } from './Components';
+import { NavSidebar, Header, headerActions, RightSidebar } from './Components';
 import { PrimaryLayoutController } from '~/controllers/PrimaryLayout';
 export class SecondaryLayout {
     constructor() {
@@ -34,8 +34,12 @@ export class SecondaryLayout {
         // SidebarRight
         this.headerActions = new headerActions();
         this.headerActions.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
-        this.RightSidebar = createContainer('right-sidebar', this.headerActions.render());
-        this.globalContainer.append(this.RightSidebar);
+        this.RightSidebar = new RightSidebar();
+        this.childrenRightSidebar = document.createElement('div');
+        this.childrenRightSidebar.className = 'right-sidebar-children-container';
+        // Demo
+        this.childrenRightSidebar.innerText = 'Demo children';
+        this.globalContainer.append(this.RightSidebar.render(this.headerActions.render(), this.childrenRightSidebar));
     }
 
     render(childNode) {
