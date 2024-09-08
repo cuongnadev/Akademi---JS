@@ -1,5 +1,7 @@
-import { studentIcon, teacherIcon, calendarIcon, foodIcon } from '~/constants';
+import { Pagination } from '../components';
+import { StudentsController } from '~/controllers';
 import { OverviewItem } from '../components/OverviewItem';
+import { studentIcon, teacherIcon, calendarIcon, foodIcon } from '~/constants';
 import { schoolPerformance, schoolCalendar, schoolFinance } from '~/constants';
 const OverviewItemTypes = [
     {
@@ -57,19 +59,42 @@ export class Dashboard {
         this.schoolCalendarImg.src = schoolCalendar;
         this.schoolCalendar.append(this.schoolCalendarImg);
 
+        // School Finance
         this.schoolFinance = document.createElement('div');
         this.schoolFinance.className = 'school-finance-container';
         this.schoolFinanceImg = document.createElement('img');
         this.schoolFinanceImg.src = schoolFinance;
         this.schoolFinance.append(this.schoolFinanceImg);
 
+        //
         this.schoolOperations = document.createElement('div');
         this.schoolOperations.className = 'school-operations flex items-center gap-10';
-
         this.schoolOperations.append(this.schoolCalendar, this.schoolFinance);
 
-        this.container.append(this.overviews, this.schoolPerformance, this.schoolOperations);
+        // Unpaid Student
+        // Title
+        this.unpaidTitle = document.createElement('p');
+        this.unpaidTitle.className = 'unpaid-title';
+        this.unpaidTitle.innerText = 'Unpaid Student Intuition';
+
+        // List Unpaid Student
+        this.listUnpaidStudent = document.createElement('div');
+        this.listUnpaidStudent.className = 'unpaid-list';
+        let list = StudentsController.getUnpaidStudent();
+        console.log(list);
+
+        // pagination
+        this.pagination = new Pagination();
+
+        // Unpaid Student Container
+        this.unpaidStudent = document.createElement('div');
+        this.unpaidStudent.className = 'unpaid-student flex flex-col ';
+        this.unpaidStudent.append(this.unpaidTitle, this.pagination.render());
+
+        this.container.append(this.overviews, this.schoolPerformance, this.schoolOperations, this.unpaidStudent);
     }
+
+    handleListUnpaidStudent() {}
 
     render() {
         return this.container;

@@ -11,10 +11,11 @@
     transition: background-color 0.2s ease;
 
     &-active {
+        background-color: $Background;
+        color: $Purple;
+        
         & path {
             fill: $Purple;
         }
-        background-color: $Background;
-        color: $Purple;
     }
 }

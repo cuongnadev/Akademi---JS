@@ -80,3 +80,16 @@
 .school-operations {
     width: 100%;
 }
+.unpaid {
+    &-student {
+        padding: 32px;
+        width: 100%;
+        background-color: $White;
+        gap: 30px;
+    }
+
+    &-title {
+        @include font-heading($text-xl);
+    }
+
+}
