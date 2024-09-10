@@ -10,13 +10,13 @@ export const apiEndpoint = {
     getStudents() {
         return `/api/students`;
     },
-    getStudents(studentId) {
+    getStudent(studentId) {
         return `/api/students/${studentId}`;
     },
     getTeachers() {
         return `/api/teachers`;
     },
-    getTeachers(teacherId) {
+    getTeacher(teacherId) {
         return `/api/teachers/${teacherId}`;
     },
     getLastestActivitys() {
@@ -25,7 +25,7 @@ export const apiEndpoint = {
     getEvents() {
         return `/api/events`;
     },
-    getEvents(date) {
+    getEvent(date) {
         return `/api/events/${date}`;
     },
     postEvents() {
