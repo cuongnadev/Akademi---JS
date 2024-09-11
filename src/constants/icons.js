@@ -28,6 +28,7 @@ import error from '~/assets/icons/Error.svg';
 import warning from '~/assets/icons/Warning.svg';
 import info from '~/assets/icons/InfoCircle.svg';
 import xmark from '~/assets/icons/Xmark.svg';
+import plus from '~/assets/icons/Plus.svg';
 
 const loadSvg = async (filePath) => {
     try {
@@ -70,6 +71,7 @@ export const [
     warningIcon,
     infoIcon,
     xmarkIcon,
+    plusIcon,
 ] = await Promise.all([
     loadSvg(activity),
     loadSvg(attachment),
@@ -101,4 +103,5 @@ export const [
     loadSvg(warning),
     loadSvg(info),
     loadSvg(xmark),
+    loadSvg(plus),
 ]);
