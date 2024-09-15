@@ -6,3 +6,4 @@ export * from './OptionsBox';
 export * from './Pagination';
 export * from './UnpaidStudentItem';
 export * from './SearchActionsPanel';
+export * from './StudentItem';
