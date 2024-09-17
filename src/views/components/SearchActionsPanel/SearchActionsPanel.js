@@ -3,7 +3,7 @@ import { Button, Input, buttonSizes, buttonVariants } from '~/views/components';
 import { dropdownIcon, plusIcon, searchIcon } from '~/constants';
 
 export class SearchActionsPanel {
-    constructor() {
+    constructor(label) {
         this.container = document.createElement('div');
         this.container.className = 'search-actions-panel-container flex items-center justify-between';
 
@@ -44,7 +44,7 @@ export class SearchActionsPanel {
         );
         // button create new
         this.newStudentButton = new Button(
-            'New Student',
+            label,
             plusIcon,
             null,
             buttonVariants.filled,

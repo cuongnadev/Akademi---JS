@@ -10,7 +10,7 @@ export class Students {
         this.container.className = 'students-container flex flex-col gap-10';
 
         // search actions panel
-        this.searchActionsPanel = new SearchActionsPanel();
+        this.searchActionsPanel = new SearchActionsPanel('New Student');
 
         // student list
         this.studentsList = document.createElement('div');
