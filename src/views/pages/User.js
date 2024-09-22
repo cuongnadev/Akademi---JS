@@ -1,6 +1,7 @@
-import { callIcon, emailIcon, locationIcon, masking1, placeholder, plusIcon } from '~/constants';
+import { callIcon, emailIcon, locationIcon, masking1, placeholder } from '~/constants';
 import { UserController } from '~/controllers';
-import { Button, buttonSizes, buttonVariants, PanelBox } from '../components';
+import { Button, buttonSizes, buttonVariants, Input } from '../components';
+import { createContainer, handleEmailFormat } from '~/utils';
 
 export class User {
     constructor() {
@@ -11,7 +12,6 @@ export class User {
 
         // get User
         this.user = UserController.getUser();
-        console.log(this.user);
 
         // profile
         this.profile = document.createElement('div');
@@ -102,37 +102,172 @@ export class User {
 
         this.profile.append(this.image, this.infoUser, this.avatar);
 
-        // main-panel
-        this.mainPanel = document.createElement('div');
-        this.mainPanel.className = 'user-dashboard-main-panel flex gap-10';
+        // form edit info user
+        this.formEdit = document.createElement('div');
+        this.formEdit.className = 'user-dashboard-form-edit';
 
-        // contact panel
-        this.contactPanel = new PanelBox();
-        this.contactPanel.container.classList.add('contact-panel');
-        // action add contact
-        this.addContact = new Button(
-            null,
-            plusIcon,
-            null,
-            buttonVariants.iconOnly,
-            buttonSizes.iconOnly,
-            'contact-panel-add',
-            () => {},
+        // title
+        this.titleForm = document.createElement('div');
+        this.titleForm.className = 'form-edit-title flex items-center';
+        this.titleForm.innerHTML = '<h3>Profile Details</h3>';
+
+        // form edit inputs
+        this.formEditInputs = document.createElement('div');
+        this.formEditInputs.className = 'form-edit-inputs flex flex-col gap-4';
+        // row 1
+        // first name
+        // First name label
+        this.firstNameLabel = document.createElement('p');
+        this.firstNameLabel.className = 'form-edit-label';
+        this.firstNameLabel.innerText = 'First Name *';
+        // First name input
+        this.firstNameInput = new Input(
+            { placeholder: 'First Name', required: true, value: this.user.firstName },
+            'form-input',
+        );
+        this.firstName = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.firstNameLabel,
+            this.firstNameInput.render(),
         );
 
-        // messages panel
-        this.messagesPanel = new PanelBox();
-        this.messagesPanel.container.classList.add('messages-panel');
-
-        this.mainPanel.append(
-            this.contactPanel.render('Contacts', 'You have <span>741</span> contacts', this.addContact.render()),
-            this.messagesPanel.render('Messages'),
+        // Last name
+        // Last name label
+        this.lastNameLabel = document.createElement('p');
+        this.lastNameLabel.className = 'form-edit-label';
+        this.lastNameLabel.innerText = 'Last Name *';
+        // Last name input
+        this.lastNameInput = new Input(
+            { placeholder: 'Last Name', required: true, value: this.user.lastName },
+            'form-input',
         );
-        this.container.append(this.profile, this.mainPanel);
+        this.lastName = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.lastNameLabel,
+            this.lastNameInput.render(),
+        );
+        this.row1 = createContainer('form-edit-row1 flex items-start gap-10', this.firstName, this.lastName);
+
+        // row 2
+        // Email
+        // Email label
+        this.emailLabel = document.createElement('p');
+        this.emailLabel.className = 'form-edit-label';
+        this.emailLabel.innerText = 'Email *';
+        // Email input
+        this.emailInput = new Input(
+            {
+                placeholder: 'Email',
+                required: true,
+                value: this.user.email,
+                onchange: () => handleEmailFormat(this.emailInput.input),
+            },
+            'form-input',
+        );
+        this.email = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.emailLabel,
+            this.emailInput.render(),
+        );
+
+        // Phone
+        // Phone label
+        this.phoneLabel = document.createElement('p');
+        this.phoneLabel.className = 'form-edit-label';
+        this.phoneLabel.innerText = 'Phone *';
+        // Phone input
+        this.phoneInput = new Input({ placeholder: 'Phone', required: true, value: this.user.phone }, 'form-input');
+        this.phone = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.phoneLabel,
+            this.phoneInput.render(),
+        );
+        this.row2 = createContainer('form-edit-row2 flex items-start gap-10', this.email, this.phone);
+
+        // row 3
+        // Address
+        // Address label
+        this.addressLabel = document.createElement('p');
+        this.addressLabel.className = 'form-edit-label';
+        this.addressLabel.innerText = 'Address *';
+        // Address input (textarea)
+        this.addressInput = document.createElement('textarea');
+        this.addressInput.className = 'form-input address-input';
+        this.addressInput.placeholder = 'Address';
+        this.addressInput.required = true;
+        this.addressInput.value = this.user.address || '';
+        this.address = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.addressLabel,
+            this.addressInput,
+        );
+
+        // Photo
+        // Photo label
+        this.photoLabel = document.createElement('p');
+        this.photoLabel.className = 'form-edit-label';
+        this.photoLabel.innerText = 'Photo *';
+
+        this.photoInput = document.createElement('label');
+        this.photoInput.className = 'form-input photo-input';
+        this.photoInput.innerHTML = `
+            <input type="file" style="display: none;" required />
+            <div class="flex items-center justify-center">Drag and drop or click here to select file</div>
+        `;
+        this.imageUrl = null;
+        this.photoInput.querySelector('input').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                this.imageUrl = URL.createObjectURL(file);
+                this.photoInput.querySelector('div').innerHTML = `<img src="${this.imageUrl}" alt="Selected Photo" />`;
+            } else {
+                this.photoInput.querySelector('div').innerText = 'Drag and drop or click here to select file';
+            }
+        });
+        this.photo = createContainer(
+            'form-edit-item flex flex-col items-start gap-4',
+            this.photoLabel,
+            this.photoInput,
+        );
+        this.row3 = createContainer('form-edit-row3 flex items-start gap-10', this.address, this.photo);
+
+        this.formEditInputs.append(this.row1, this.row2, this.row3);
+
+        this.formEdit.append(this.titleForm, this.formEditInputs);
+
+        // btn update
+        this.updateInfoUser = new Button(
+            'Update',
+            null,
+            null,
+            buttonVariants.filled,
+            buttonSizes.sm,
+            'form-edit-update-btn',
+            () => this.handleUpdate(),
+        );
+        // toast
+        this.toast = document.createElement('div');
+        this.toast.className = 'toast-container';
+
+        this.container.append(this.toast, this.profile, this.formEdit, this.updateInfoUser.render());
     }
 
     getClassName() {
         return this.name;
+    }
+
+    handleUpdate() {
+        const updatedUser = {
+            id: this.user.id,
+            firstName: this.firstNameInput.input.value,
+            lastName: this.lastNameInput.input.value,
+            email: this.emailInput.input.value,
+            phone: this.phoneInput.input.value,
+            address: this.addressInput.value,
+            image: this.imageUrl,
+        };
+
+        UserController.updatedUser(updatedUser);
     }
 
     render() {
