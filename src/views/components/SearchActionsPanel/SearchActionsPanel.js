@@ -1,6 +1,6 @@
 import { createContainer } from '~/utils';
-import { Button, Input, buttonSizes, buttonVariants } from '~/views/components';
-import { dropdownIcon, plusIcon, searchIcon } from '~/constants';
+import { Button, Search, buttonSizes, buttonVariants } from '~/views/components';
+import { dropdownIcon, plusIcon } from '~/constants';
 
 export class SearchActionsPanel {
     constructor(label) {
@@ -8,28 +8,7 @@ export class SearchActionsPanel {
         this.container.className = 'search-actions-panel-container flex items-center justify-between';
 
         // search
-        this.searchInput = new Input(
-            {
-                placeholder: 'Search here...',
-                type: 'text',
-                onchange: () => {},
-            },
-            'search-input',
-        );
-        this.searchIcon = new Button(
-            null,
-            searchIcon,
-            null,
-            buttonVariants.iconOnly,
-            buttonSizes.iconOnly,
-            'action-btn search-btn',
-            () => {},
-        );
-        this.search = createContainer(
-            'search-container flex items-center',
-            this.searchIcon.render(),
-            this.searchInput.render(),
-        );
+        this.search = new Search();
 
         // Action
         // button sort
@@ -58,7 +37,7 @@ export class SearchActionsPanel {
             this.newStudentButton.render(),
         );
 
-        this.container.append(this.search, this.actionButtonContainer);
+        this.container.append(this.search.render(), this.actionButtonContainer);
     }
 
     render() {

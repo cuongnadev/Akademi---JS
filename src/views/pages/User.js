@@ -1,5 +1,6 @@
-import { callIcon, emailIcon, locationIcon, masking1, placeholder } from '~/constants';
+import { callIcon, emailIcon, locationIcon, masking1, placeholder, plusIcon } from '~/constants';
 import { UserController } from '~/controllers';
+import { Button, buttonSizes, buttonVariants, PanelBox } from '../components';
 
 export class User {
     constructor() {
@@ -102,8 +103,32 @@ export class User {
         this.profile.append(this.image, this.infoUser, this.avatar);
 
         // main-panel
+        this.mainPanel = document.createElement('div');
+        this.mainPanel.className = 'user-dashboard-main-panel flex gap-10';
 
-        this.container.append(this.profile);
+        // contact panel
+        this.contactPanel = new PanelBox();
+        this.contactPanel.container.classList.add('contact-panel');
+        // action add contact
+        this.addContact = new Button(
+            null,
+            plusIcon,
+            null,
+            buttonVariants.iconOnly,
+            buttonSizes.iconOnly,
+            'contact-panel-add',
+            () => {},
+        );
+
+        // messages panel
+        this.messagesPanel = new PanelBox();
+        this.messagesPanel.container.classList.add('messages-panel');
+
+        this.mainPanel.append(
+            this.contactPanel.render('Contacts', 'You have <span>741</span> contacts', this.addContact.render()),
+            this.messagesPanel.render('Messages'),
+        );
+        this.container.append(this.profile, this.mainPanel);
     }
 
     getClassName() {

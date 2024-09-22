@@ -8,3 +8,5 @@ export * from './UnpaidStudentItem';
 export * from './SearchActionsPanel';
 export * from './StudentItem';
 export * from './TeacherItem';
+export * from './PanelBox';
+export * from './Search';

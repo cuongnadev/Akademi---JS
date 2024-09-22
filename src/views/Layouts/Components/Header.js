@@ -1,7 +1,5 @@
-import { createContainer } from '~/utils';
+import { Search } from '~/views/components';
 import { headerActions } from './HeaderActions';
-import { Button, Input, buttonSizes, buttonVariants } from '~/views/components';
-import { searchIcon } from '~/constants';
 
 export class Header {
     // Header
@@ -13,31 +11,10 @@ export class Header {
         this.title = document.createElement('h2');
         this.title.className = 'header-title';
 
-        this.searchInput = new Input(
-            {
-                placeholder: 'Search here...',
-                type: 'text',
-                onchange: () => {},
-            },
-            'search-input',
-        );
-        this.searchIcon = new Button(
-            null,
-            searchIcon,
-            null,
-            buttonVariants.iconOnly,
-            buttonSizes.iconOnly,
-            'action-btn search-btn',
-            () => {},
-        );
-        this.search = createContainer(
-            'search-container flex items-center',
-            this.searchIcon.render(),
-            this.searchInput.render(),
-        );
+        this.search = new Search();
 
         this.headerActions = new headerActions();
-        this.container.append(this.title, this.search, this.headerActions.render());
+        this.container.append(this.title, this.search.render(), this.headerActions.render());
     }
 
     render(title) {

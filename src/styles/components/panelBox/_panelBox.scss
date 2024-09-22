@@ -1,0 +1,45 @@
+.panel-box {
+    padding: 32px;
+    background-color: $White;
+    border-radius: 20px;
+    flex: 1;
+
+    &-search {
+        box-shadow: $Shadow;
+        border: 1px solid $Gray-3;
+        border-radius: 40px;
+    }
+
+    &-more-btn {
+        @include font($text-base, $font-semibold);
+        color: $Purple;
+        background-color: rgba(77, 68, 181, 0.10); // --linear-transparent-purple-10
+        box-shadow: $Shadow;
+    }
+}
+.panel-header {
+    &-main-title {
+        @include font-heading($text-xl);
+    }
+    color: $Text;
+
+    &-sub-title {
+        @include font($text-md, $font-regular);
+        color: $Gray-3;
+
+        & span {
+            @include font($text-md, $font-semibold);
+            color: $Text;
+        }
+    }
+}
+.contact-panel-add {
+    width: 60px;
+    height: 60px;
+    background-color: $Purple;
+    flex-shrink: 0;
+
+    & path {
+        fill: $White;
+    }
+}
