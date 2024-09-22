@@ -7,6 +7,9 @@ export const apiEndpoint = {
         // http request POST
         return `/api/admins`;
     },
+    updateUser(userId) {
+        return `/api/admins/${userId}`;
+    },
     getStudents() {
         return `/api/students`;
     },

@@ -34,7 +34,9 @@ export class PrimaryLayout {
     render(childNode) {
         this.contentContainer.innerHTML = '';
         // Append childNode to global container
-        this.contentContainer.append(this.header.render(childNode.constructor.name), childNode.render());
+        typeof childNode.getClassName === 'function'
+            ? this.contentContainer.append(this.header.render(childNode.getClassName()), childNode.render())
+            : this.contentContainer.append(this.header.render(childNode.constructor.name), childNode.render());
         return this.globalContainer;
     }
 }
