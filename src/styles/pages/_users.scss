@@ -106,6 +106,10 @@
     &-inputs {
         padding: 40px;
     }
+    
+    &-label {
+        @include font($text-base, $font-semibold);
+    }
 
     &-item {
         width: 400px;

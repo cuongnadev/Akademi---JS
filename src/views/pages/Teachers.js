@@ -1,5 +1,6 @@
 import { Pagination, SearchActionsPanel, TeacherItem } from '../components';
 import { TeachersController } from '~/controllers';
+import config from '~/config';
 
 export class Teachers {
     constructor() {
@@ -10,7 +11,7 @@ export class Teachers {
         this.container.className = 'teachers-container flex flex-col gap-10';
 
         // search actions panel
-        this.searchActionsPanel = new SearchActionsPanel('New Teacher');
+        this.searchActionsPanel = new SearchActionsPanel('New Teacher', config.routes.teacherAddNew);
 
         // student list
         this.teachersList = document.createElement('div');

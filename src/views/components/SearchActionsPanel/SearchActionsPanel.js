@@ -1,9 +1,10 @@
 import { createContainer } from '~/utils';
 import { Button, Search, buttonSizes, buttonVariants } from '~/views/components';
 import { dropdownIcon, plusIcon } from '~/constants';
+import { Router } from '~/routes';
 
 export class SearchActionsPanel {
-    constructor(label) {
+    constructor(label, routes) {
         this.container = document.createElement('div');
         this.container.className = 'search-actions-panel-container flex items-center justify-between';
 
@@ -29,7 +30,7 @@ export class SearchActionsPanel {
             buttonVariants.filled,
             buttonSizes.md,
             'new-student-button',
-            () => {},
+            routes ? () => Router.pushState(routes) : () => {},
         );
         this.actionButtonContainer = createContainer(
             'actions-button-container flex items-center gap-6',

@@ -150,7 +150,12 @@ export class Router {
         const len = Math.min(urlSegments.length, pathSegments.length);
 
         for (let i = 0; i < len; i++) {
-            if (urlSegments[i] !== pathSegments[i] && !pathSegments[i].startsWith(':')) {
+            if (pathSegments[i].startsWith(':')) {
+                const isStaticValue = ['add', 'edit'].includes(urlSegments[i]);
+                if (isStaticValue) {
+                    return false;
+                }
+            } else if (urlSegments[i] !== pathSegments[i]) {
                 return false;
             }
         }
