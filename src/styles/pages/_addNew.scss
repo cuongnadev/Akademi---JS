@@ -1,4 +1,4 @@
-.add-new-teacher {
+.add-new-teacher, .add-new-student {
     padding: 0 50px 40px 0;
 }
 .form-add {
@@ -54,7 +54,7 @@
         display: none;
     }
 
-    &-row3 .photo-input div {
+    &-row3 .photo-input div, &-col .photo-input div {
         padding: 4px;
         width: 100%;
         max-width: 180px;
@@ -65,7 +65,7 @@
         border: 1px dashed $Gray-2;
     }
 
-    &-row3 .photo-input div img {
+    &-row3 .photo-input div img, &-col .photo-input div img {
         width: 140px;
         height: 140px;
         border-radius: 5px;
@@ -86,5 +86,26 @@
 
     &-action.save-as-draft {
         color: $Purple;
+    }
+
+    &-col.col2  {
+        width: 100%;
+    }
+}
+.form-radio {
+    @include font($text-sm, $font-regular);
+    color: $Gray-3;
+
+    & input[type="radio"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    & input[type="radio"]:checked {
+        accent-color: $Purple;
+    }
+
+    & span {
+        line-height: 16px;
     }
 }

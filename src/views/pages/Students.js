@@ -1,3 +1,4 @@
+import routes from '~/config/routes';
 import { Checkbox, Pagination, SearchActionsPanel, StudentItem } from '../components';
 import { StudentsController } from '~/controllers';
 
@@ -10,7 +11,7 @@ export class Students {
         this.container.className = 'students-container flex flex-col gap-10';
 
         // search actions panel
-        this.searchActionsPanel = new SearchActionsPanel('New Student');
+        this.searchActionsPanel = new SearchActionsPanel('New Student', routes.studentAddNew);
 
         // student list
         this.studentsList = document.createElement('div');
