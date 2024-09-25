@@ -1,10 +1,16 @@
 import { callIcon, emailIcon, dotsIcon, placeholder } from '~/constants';
 import { Button, buttonSizes, buttonVariants } from '../Button';
+import { Router } from '~/routes';
+import routes from '~/config/routes';
 
 export class TeacherItem {
     constructor(teacher) {
         this.container = document.createElement('div');
         this.container.className = 'teacher-item-container flex flex-col items-center';
+
+        this.container.addEventListener('click', () => {
+            Router.pushState(routes.teacherDetail);
+        });
 
         // avatar
         this.avatar = document.createElement('img');
