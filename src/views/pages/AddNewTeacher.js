@@ -1,11 +1,17 @@
 import { TeachersController } from '~/controllers';
-import { Button, buttonSizes, buttonVariants, Input } from '../components';
+import { Button, buttonSizes, buttonVariants, Input, Toast } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
 
 export class AddNewTeacher {
     constructor() {
-        this.container = document.createElement('div');
+        this.name = 'Add New Teacher';
+
+        this.container = document.createElement('form');
         this.container.className = 'add-new-teacher flex flex-col gap-10';
+
+        this.container.addEventListener('submit', (event) => {
+            event.preventDefault();
+        });
 
         // form add teacher
         this.formAddTeacher = document.createElement('div');
@@ -26,7 +32,7 @@ export class AddNewTeacher {
         this.firstNameLabel.className = 'form-add-label';
         this.firstNameLabel.innerText = 'First Name *';
         // First name input
-        this.firstNameInput = new Input({ placeholder: 'First Name', required: true }, 'form-input');
+        this.firstNameInput = new Input({ placeholder: 'First Name', name: 'firstName', required: true }, 'form-input');
         this.firstName = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.firstNameLabel,
@@ -39,7 +45,7 @@ export class AddNewTeacher {
         this.lastNameLabel.className = 'form-add-label';
         this.lastNameLabel.innerText = 'Last Name *';
         // Last name input
-        this.lastNameInput = new Input({ placeholder: 'Last Name', required: true }, 'form-input');
+        this.lastNameInput = new Input({ placeholder: 'Last Name', name: 'lastName', required: true }, 'form-input');
         this.lastName = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.lastNameLabel,
@@ -57,6 +63,7 @@ export class AddNewTeacher {
         this.emailInput = new Input(
             {
                 placeholder: 'Email',
+                name: 'email',
                 required: true,
                 onchange: () => handleEmailFormat(this.emailInput.input),
             },
@@ -74,7 +81,7 @@ export class AddNewTeacher {
         this.phoneLabel.className = 'form-add-label';
         this.phoneLabel.innerText = 'Phone *';
         // Phone input
-        this.phoneInput = new Input({ placeholder: 'Phone', required: true }, 'form-input');
+        this.phoneInput = new Input({ placeholder: 'Phone', name: 'phone', required: true }, 'form-input');
         this.phone = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.phoneLabel,
@@ -93,6 +100,7 @@ export class AddNewTeacher {
         this.addressInput.className = 'form-input address-input';
         this.addressInput.placeholder = 'Address';
         this.addressInput.required = true;
+        this.addressInput.name = 'address';
         this.addressInput.value = '';
         this.address = createContainer(
             'form-add-item flex flex-col items-start gap-4',
@@ -109,7 +117,7 @@ export class AddNewTeacher {
         this.photoInput = document.createElement('label');
         this.photoInput.className = 'form-input photo-input';
         this.photoInput.innerHTML = `
-            <input type="file" style="display: none;" required />
+            <input type="file" name="photo" style="display: none;" />
             <div class="flex items-center justify-center">Drag and drop or click here to select file</div>
         `;
         this.imageUrl = null;
@@ -132,7 +140,7 @@ export class AddNewTeacher {
         this.dobLabel.className = 'form-add-label';
         this.dobLabel.innerText = 'Date of Birth *';
         // Dob input
-        this.dobInput = new Input({ placeholder: '1 January 1999', required: true }, 'form-input');
+        this.dobInput = new Input({ placeholder: '1 January 1999', name: 'dob', required: true }, 'form-input');
         this.dob = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.dobLabel,
@@ -144,7 +152,7 @@ export class AddNewTeacher {
         this.pobLabel.className = 'form-add-label';
         this.pobLabel.innerText = 'Place of Birth *';
         // Pob input
-        this.pobInput = new Input({ placeholder: 'Việt Nam', required: true }, 'form-input');
+        this.pobInput = new Input({ placeholder: 'Việt Nam', name: 'pob', required: true }, 'form-input');
         this.pob = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.pobLabel,
@@ -174,7 +182,10 @@ export class AddNewTeacher {
         this.universityLabel.className = 'form-add-label';
         this.universityLabel.innerText = 'University *';
         // University input
-        this.universityInput = new Input({ placeholder: 'University', required: true }, 'form-input');
+        this.universityInput = new Input(
+            { placeholder: 'University', name: 'university', required: true },
+            'form-input',
+        );
         this.university = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.universityLabel,
@@ -187,7 +198,7 @@ export class AddNewTeacher {
         this.degreeLabel.className = 'form-add-label';
         this.degreeLabel.innerText = 'Degree *';
         // Degree input
-        this.degreeInput = new Input({ placeholder: 'University', required: true }, 'form-input');
+        this.degreeInput = new Input({ placeholder: 'Degree', name: 'degree', required: true }, 'form-input');
         this.degree = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.degreeLabel,
@@ -205,9 +216,9 @@ export class AddNewTeacher {
         this.startEndInputs = document.createElement('div');
         this.startEndInputs.className = 'form-add-start-end-inputs flex gap-6 items-center';
         // start date input
-        this.startInput = new Input({ placeholder: '1 January 1999', required: true }, 'form-input');
+        this.startInput = new Input({ placeholder: '1 January 1999', name: 'startDate', required: true }, 'form-input');
         // end date input
-        this.endInput = new Input({ placeholder: '1 January 1999', required: true }, 'form-input');
+        this.endInput = new Input({ placeholder: '1 January 1999', name: 'endDate', required: true }, 'form-input');
         this.startEndInputs.append(this.startInput.render(), this.endInput.render());
         this.startEndDate = createContainer(
             'form-add-item flex flex-col items-start gap-4',
@@ -221,7 +232,7 @@ export class AddNewTeacher {
         this.cityLabel.className = 'form-add-label';
         this.cityLabel.innerText = 'City *';
         // City Input
-        this.cityInput = new Input({ placeholder: 'Akademi', required: true }, 'form-input');
+        this.cityInput = new Input({ placeholder: 'Akademi', name: 'city', required: true }, 'form-input');
         this.city = createContainer(
             'form-add-item flex flex-col items-start gap-4',
             this.cityLabel,
@@ -282,7 +293,18 @@ export class AddNewTeacher {
             city: this.cityInput.input.value,
             major: this.degreeInput.input.value,
         };
+        // Kiểm tra các trường dữ liệu
+        for (const key in teacherData) {
+            if (!teacherData[key] && key !== 'avatar') {
+                Toast.render({ title: 'Error', message: 'Please enter complete info!', type: 'ERROR' });
+                return;
+            }
+        }
         TeachersController.addTeacher(teacherData);
+    }
+
+    getClassName() {
+        return this.name;
     }
 
     render() {
