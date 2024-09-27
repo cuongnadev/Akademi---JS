@@ -1,7 +1,8 @@
 import { createContainer, formatDate } from '~/utils';
+import { ScheduleItem } from './ScheduleItem';
 
 export class ScheduleDetails {
-    constructor(role) {
+    constructor(role, id) {
         this.container = document.createElement('div');
         this.container.className = 'schedule-details';
 
@@ -25,6 +26,8 @@ export class ScheduleDetails {
         this.headerSchedule.append(this.headerScheduleTitle, this.headerScheduleSubTitle);
 
         this.scheduleList.append(this.headerSchedule);
+        this.scheduleItem = new ScheduleItem(role, 'World History', 'Class VII-B', 'Art', 'Monday', '09.00 - 10.00 AM');
+        this.scheduleList.append(this.scheduleItem.render());
 
         this.container.appendChild(this.scheduleList);
     }

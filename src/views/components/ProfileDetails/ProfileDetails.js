@@ -1,91 +1,110 @@
 import { callIcon, dotsIcon, emailIcon, locationIcon, masking2, placeholder, userIcon } from '~/constants';
 import { createContainer } from '~/utils';
 import { Button, buttonSizes, buttonVariants } from '../Button';
+import { StudentsController, TeachersController } from '~/controllers';
 
 export class ProfileDetails {
-    constructor(role) {
+    constructor(role, id) {
+        // Tạo phần tử container
+        this.container = document.createElement('div');
+        this.container.className = 'profile-details';
+
+        // call funtion init to handle data
+        this.init(role, id);
+    }
+
+    async init(role, id) {
+        this.data =
+            role === 'Teacher'
+                ? await TeachersController.getTeacherById(id.teacherId)
+                : await StudentsController.getStudentById(id.studentId);
+
+        this.createProfileDetails(role);
+    }
+
+    createProfileDetails(role) {
         const CONTACT = [
             {
                 label: 'Parents:',
                 icon: userIcon,
-                text: 'Justin Hope',
+                text: role === 'Student' ? this.data.parentName : '',
             },
             {
                 label: 'Address:',
                 icon: locationIcon,
-                text: 'Jakarta, Indonesia',
+                text: role === 'Student' ? this.data.place : this.data.address,
             },
             {
                 label: 'Phone:',
                 icon: callIcon,
-                text: 'Justin Hope',
+                text: `84+ ${role === 'Student' ? this.data.phone_parent : this.data.phone}`,
             },
             {
                 label: 'Email:',
                 icon: emailIcon,
-                text: 'cuongna@gmail.com',
+                text: role === 'Student' ? this.data.email_student : this.data.email,
             },
         ];
         const parentInfo = [
             {
                 label: 'Email:',
-                text: `cuongna@gmail.com`,
+                text: role === 'Student' ? this.data.email_parent : '',
             },
             {
                 label: 'Phone:',
-                text: `84+ 931643274`,
+                text: `84+ ${role === 'Student' ? this.data.phone_parent : ''}`,
             },
             {
                 label: 'Address:',
-                text: `Quảng Đông, Châu Đốc`,
+                text: role === 'Student' ? this.data.address_parent : '',
             },
         ];
 
-        this.container = document.createElement('div');
-        this.container.className = 'profile-details';
-
-        // image background
+        // Image background
         this.image = document.createElement('div');
         this.image.className = 'profile-details-image flex';
         this.image.innerHTML = `<img src=${masking2} alt='' />`;
-        // info details
-        // name
+
+        // Name
         this.name = document.createElement('h3');
         this.name.className = 'profile-details-name';
-        this.name.innerHTML = 'Java Boy';
-        // role
+        this.name.innerHTML = this.data.name;
+
+        // Role
         this.role = document.createElement('p');
         this.role.className = 'profile-details-role';
-        this.role.innerHTML = role === 'Teacher' ? `IT Teacher` : `Student`;
-        // contact
+        this.role.innerHTML = role === 'Teacher' ? `${this.data.major} Teacher` : `Student`;
+
+        // Contact
         this.contacts = document.createElement('div');
         this.contacts.className = 'profile-details-contacts flex items-center gap-10';
-        // contact item
+
+        // Contact items
         CONTACT.map((item) => {
-            // item
-            // item label
             this.itemLabel = document.createElement('p');
             this.itemLabel.className = 'contact-item-label';
             this.itemLabel.innerHTML = item.label;
-            // item content
-            // icon
+
             this.itemIcon = document.createElement('div');
             this.itemIcon.className = 'contact-item-icon flex items-center justify-center';
             this.itemIcon.innerHTML = item.icon;
-            // text
+
             this.itemText = document.createElement('p');
             this.itemText.className = 'contact-item-text';
             this.itemText.innerText = item.text;
+
             this.itemContent = createContainer(
                 'contact-item-content flex items-center gap-4',
                 this.itemIcon,
                 this.itemText,
             );
+
             this.contactItem = createContainer(
                 'contact-item flex flex-col items-start gap-2',
                 role === 'Teacher' ? '' : this.itemLabel,
                 this.itemContent,
             );
+
             if (role === 'Teacher' && item.label === 'Parents:') {
                 return;
             }
@@ -93,15 +112,14 @@ export class ProfileDetails {
         });
 
         // About
-        // label
         this.aboutLabel = document.createElement('h3');
         this.aboutLabel.className = 'profile-details-label';
         this.aboutLabel.innerHTML = 'About:';
-        // content
         this.aboutContent = document.createElement('p');
         this.aboutContent.className = 'profile-details-text-content';
         this.aboutContent.innerHTML =
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ';
+
         this.about = createContainer(
             'profile-details-about flex flex-col items-start gap-4',
             this.aboutLabel,
@@ -109,32 +127,32 @@ export class ProfileDetails {
         );
 
         // Education or Parent detail
-        // label
         this.eduOrParentLabel = document.createElement('h3');
         this.eduOrParentLabel.className = 'profile-details-label';
         this.eduOrParentLabel.innerHTML = role === 'Teacher' ? 'Education:' : 'Parent Details:';
-        // content
-        // edu
+
         this.eduName = document.createElement('p');
         this.eduName.className = 'profile-details-edu-name flex items-center';
-        this.eduName.innerHTML = `<span> &#8226; </span>VKU`;
-        // start date
+        this.eduName.innerHTML = `<span> &#8226; </span>${this.data.university}`;
+
         this.eduStart = document.createElement('p');
         this.eduStart.className = 'profile-details-edu-date';
-        this.eduStart.innerHTML = `<span>Start Date:</span> 1 January 1999`;
-        // end date
+        this.eduStart.innerHTML = `<span>Start Date:</span> ${this.data.start_date}`;
+
         this.eduEnd = document.createElement('p');
         this.eduEnd.className = 'profile-details-edu-date';
-        this.eduEnd.innerHTML = `<span>End Date:</span> 1 January 1999`;
+        this.eduEnd.innerHTML = `<span>End Date:</span> ${this.data.end_date}`;
+
         this.eduContent = createContainer(
             'profile-details-edu-content flex flex-col items-start gap-2',
             this.eduName,
             this.eduStart,
             this.eduEnd,
         );
-        // parent
+
         this.parentContent = document.createElement('div');
         this.parentContent.className = 'profile-details-parent-content flex flex-col items-start gap-2';
+
         parentInfo.map((item) => {
             this.parentContentItem = document.createElement('p');
             this.parentContentItem.className = 'profile-details-parent-content-item';
@@ -142,6 +160,7 @@ export class ProfileDetails {
 
             this.parentContent.append(this.parentContentItem);
         });
+
         this.eduOrParent = createContainer(
             'profile-details-edu-or-parent flex flex-col items-start gap-4',
             this.eduOrParentLabel,
@@ -152,22 +171,22 @@ export class ProfileDetails {
         this.expertiseOrClassLabel = document.createElement('h3');
         this.expertiseOrClassLabel.className = 'profile-details-label';
         this.expertiseOrClassLabel.innerHTML = role === 'Teacher' ? 'Expertise:' : 'Class:';
-        // content
-        // expertise
+
         this.expertiseContent = document.createElement('p');
         this.expertiseContent.className = 'profile-details-text-content';
-        this.expertiseContent.innerHTML = `IT`;
-        // class
+        this.expertiseContent.innerHTML = this.data.major;
+
         this.classContent = document.createElement('p');
         this.classContent.className = 'profile-details-text-content';
-        this.classContent.innerHTML = `VII B`;
+        this.classContent.innerHTML = this.data.class;
+
         this.expertiseOrClass = createContainer(
             'profile-details-expertise-or-class flex flex-col gap-4',
             this.expertiseOrClassLabel,
             role === 'Teacher' ? this.expertiseContent : this.classContent,
         );
 
-        // actions
+        // Actions
         this.actions = new Button(
             null,
             null,
@@ -178,10 +197,10 @@ export class ProfileDetails {
             () => {},
         );
 
-        // avatar
+        // Avatar
         this.avatar = document.createElement('div');
         this.avatar.className = 'profile-details-avatar flex items-center justify-center';
-        this.avatar.innerHTML = `<img src=${placeholder} alt='' />`;
+        this.avatar.innerHTML = `<img src=${this.data.avatar ? this.user.avatar : placeholder} alt='' />`;
 
         this.infoDetails = createContainer(
             'profile-details-info',
@@ -194,6 +213,7 @@ export class ProfileDetails {
             this.actions.render(),
             this.avatar,
         );
+
         this.container.append(this.image, this.infoDetails);
     }
 

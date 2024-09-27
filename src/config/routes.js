@@ -4,10 +4,8 @@ const routes = {
     home: '/',
     students: '/students',
     teachers: '/teachers',
-    singleStudent: '/students/:studentId',
-    singleTeacher: '/teachers/:teacherId',
-    studentDetail: '/students/student-detail/:studentId',
-    teacherDetail: '/teachers/teacher-detail/:teacherId',
+    studentDetail: '/students/:studentId',
+    teacherDetail: '/teachers/:teacherId',
     studentAddNew: '/students/add',
     teacherAddNew: '/teachers/add',
     events: '/events',
@@ -23,14 +21,6 @@ export const getPath = {
     [routes.home]: () => routes.home,
     [routes.students]: () => routes.students,
     [routes.teachers]: () => routes.teachers,
-    [routes.singleStudent]() {
-        const { studentId } = Router.extractParams(location.pathname, routes.singleStudent);
-        return routes.singleStudent.replace(':studentId', studentId);
-    },
-    [routes.singleTeacher]() {
-        const { teacherId } = Router.extractParams(location.pathname, routes.singleTeacher);
-        return routes.singleTeacher.replace(':teacherId', teacherId);
-    },
     [routes.studentDetail]() {
         const { studentId } = Router.extractParams(location.pathname, routes.studentDetail);
         return routes.studentDetail.replace(':studentId', studentId);

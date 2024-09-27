@@ -86,4 +86,32 @@ export class StudentsController {
             }
         }
     }
+
+    static async getStudentById(studentId) {
+        try {
+            const response = await fetch(apiEndpoint.getStudent(studentId), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // No body required for GET method
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Get Data failed');
+            }
+
+            const data = await response.json();
+
+            if (data.length > 0) {
+                return data;
+            } else {
+                throw new Error('No student');
+            }
+        } catch (error) {
+            let errorMessage = error.message;
+            throw new Error(errorMessage);
+        }
+    }
 }

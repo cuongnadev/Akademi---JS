@@ -9,7 +9,8 @@ export class TeacherItem {
         this.container.className = 'teacher-item-container flex flex-col items-center';
 
         this.container.addEventListener('click', () => {
-            Router.pushState(routes.teacherDetail);
+            const detailPath = routes.teacherDetail.replace(':teacherId', teacher.id);
+            Router.pushState(detailPath);
         });
 
         // avatar

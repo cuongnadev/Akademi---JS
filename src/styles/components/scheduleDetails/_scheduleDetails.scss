@@ -17,3 +17,64 @@
         color: $Gray-3;
     }
 }
+
+.schedule-item {
+    padding: 24px 24px 24px 48px;
+    position: relative;
+    background-color: $White;
+    border-radius: 0 20px 20px 0;
+
+    &-name {
+        padding-bottom: 5px;
+        @include font($text-base, $font-semibold);
+        color: $Text;
+    }
+
+    &-grade {
+        padding-bottom: 26px;
+        @include font($text-sm, $font-regular);
+        color: $Gray-3;
+    }
+
+    &-day, &-time {
+        padding-bottom: 8px;
+        @include font($text-sm, $font-regular);
+        color: $Gray-3;
+
+
+    }
+
+    &-day svg, &-time svg, &-day span, &-time span {
+        width: 24px;
+        height: 24px;
+    }
+
+    &-day path {
+        fill: $Orange;
+    }
+
+    &-time path {
+        fill: $Yellow;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 100%;
+        border-radius: 20px 0 0 20px;
+    }
+    &.grade-a::before {
+        background-color: $Orange;
+    }
+
+    &.grade-b::before {
+        background-color: $Yellow;
+    }
+
+    &.grade-c::before {
+        background-color: $Purple;
+    }
+}
