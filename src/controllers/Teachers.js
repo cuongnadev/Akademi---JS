@@ -85,4 +85,38 @@ export class TeachersController {
             throw new Error(errorMessage);
         }
     }
+
+    static async getTeacherSchedule(teacherId) {
+        try {
+            const response = await fetch(apiEndpoint.getCourses(teacherId), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // No body required for GET method
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Get Data failed');
+            }
+
+            const data = await response.json();
+
+            if (data) {
+                // Lọc các khóa học theo teacherId
+                const teacherCourses = data.filter((course) => course.teacher_id === teacherId);
+                if (teacherCourses.length > 0) {
+                    return teacherCourses;
+                } else {
+                    throw new Error('No courses for this teacher');
+                }
+            } else {
+                throw new Error('No course');
+            }
+        } catch (error) {
+            let errorMessage = error.message;
+            throw new Error(errorMessage);
+        }
+    }
 }

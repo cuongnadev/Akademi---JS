@@ -1,7 +1,7 @@
 .schedule-details {
     &-header {
         width: 100%;
-        max-width: 368px;
+        width: 386px;
         padding: 32px;
         background-color: $White;
         border-radius: 20px;
@@ -19,10 +19,11 @@
 }
 
 .schedule-item {
+    width: 100%;
     padding: 24px 24px 24px 48px;
     position: relative;
     background-color: $White;
-    border-radius: 0 20px 20px 0;
+    border-radius: 20px;
 
     &-name {
         padding-bottom: 5px;
@@ -40,8 +41,6 @@
         padding-bottom: 8px;
         @include font($text-sm, $font-regular);
         color: $Gray-3;
-
-
     }
 
     &-day svg, &-time svg, &-day span, &-time span {
@@ -76,5 +75,10 @@
 
     &.grade-c::before {
         background-color: $Purple;
+    }
+
+    &-not-schedule {
+        @include font($text-sm, $font-regular);
+        color: $Gray-3;
     }
 }

@@ -459,80 +459,207 @@
   "courses": [
     {
       "id": "101",
+      "teacher_id": "123456789",
+      "student_id": "123456789",
+      "class": "VII A",
       "name": "Advanced Mathematics",
       "major": "Mathematics",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Monday",
+      "time": "09:00 AM"
     },
     {
       "id": "102",
-      "name": "Biology 101",
-      "major": "Biology",
+      "teacher_id": "123456787",
+      "student_id": "123456790",
+      "class": "VII B",
+      "name": "Science 101",
+      "major": "Science",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Tuesday",
+      "time": "10:00 AM"
     },
     {
       "id": "103",
+      "teacher_id": "123456788",
+      "student_id": "123456791",
+      "class": "VII C",
       "name": "Introduction to Art",
       "major": "Art",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Wednesday",
+      "time": "09:30 AM"
     },
     {
       "id": "104",
-      "name": "Java",
-      "major": "IT",
+      "teacher_id": "123456799",
+      "student_id": "123456792",
+      "class": "VII A",
+      "name": "Biology 101",
+      "major": "Biology",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Thursday",
+      "time": "10:30 AM"
     },
     {
       "id": "105",
-      "name": "General Science",
-      "major": "Science",
-      "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
-    },
-    {
-      "id": "106",
+      "teacher_id": "123456777",
+      "student_id": "123456793",
+      "class": "VII B",
       "name": "World History",
       "major": "History",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Friday",
+      "time": "11:00 AM"
+    },
+    {
+      "id": "106",
+      "teacher_id": "123456989",
+      "student_id": "123456794",
+      "class": "VII C",
+      "name": "Định luật Newton",
+      "major": "Physics",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Saturday",
+      "time": "09:15 AM"
     },
     {
       "id": "107",
-      "name": "Fundamentals of Physics",
-      "major": "Physics",
-      "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
-    },
-    {
-      "id": "108",
+      "teacher_id": "123776789",
+      "student_id": "123456795",
+      "class": "VII A",
       "name": "Algorithms and Data Structures",
       "major": "Algorithm",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Sunday",
+      "time": "10:45 AM"
     },
     {
-      "id": "109",
+      "id": "108",
+      "teacher_id": "188456789",
+      "student_id": "d54d",
+      "class": "VII A",
       "name": "English Literature",
       "major": "English",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Monday",
+      "time": "09:00 AM"
     },
     {
-      "id": "110",
+      "id": "109",
+      "teacher_id": "123456229",
+      "student_id": "2da0",
+      "class": "VII C",
       "name": "Introduction to Programming",
       "major": "Programming",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Tuesday",
+      "time": "10:00 AM"
+    },
+    {
+      "id": "110",
+      "teacher_id": "120056789",
+      "student_id": "123456790",
+      "class": "VII B",
+      "name": "Earth Science",
+      "major": "Science",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Wednesday",
+      "time": "09:45 AM"
     },
     {
       "id": "111",
+      "teacher_id": "123454589",
+      "student_id": "d54d",
+      "class": "VII A",
+      "name": "Basic drawing techniques",
+      "major": "Art",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Friday",
+      "time": "10:15 AM"
+    },
+    {
+      "id": "112",
+      "teacher_id": "123456119",
+      "student_id": "123456794",
+      "class": "VII C",
+      "name": "Biology 104",
+      "major": "Biology",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Saturday",
+      "time": "07:15 AM"
+    },
+    {
+      "id": "113",
+      "teacher_id": "993456789",
+      "student_id": "123456789",
+      "class": "VII A",
+      "name": "React",
+      "major": "IT",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Sunday",
+      "time": "09:15 AM"
+    },
+    {
+      "id": "114",
+      "teacher_id": "178456789",
+      "student_id": "123456790",
+      "class": "VII B",
+      "name": "C++",
+      "major": "IT",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Monday",
+      "time": "08:15 AM"
+    },
+    {
+      "id": "115",
+      "teacher_id": "16ff",
+      "student_id": "123456792",
+      "class": "VII A",
+      "name": "Java Nâng Cao",
+      "major": "IT",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Saturday",
+      "time": "07:15 AM"
+    },
+    {
+      "id": "116",
+      "teacher_id": "5f92",
+      "student_id": "123456793",
+      "class": "VII B",
       "name": "Design Web",
       "major": "IT",
       "start_date": "2024-01-01",
-      "end_date": "2024-06-01"
+      "end_date": "2024-06-01",
+      "dow": "Tuesday",
+      "time": "07:15 AM"
+    },
+    {
+      "id": "117",
+      "teacher_id": "123456119",
+      "student_id": "123456794",
+      "class": "VII C",
+      "name": "Biology 111",
+      "major": "Biology",
+      "start_date": "2024-01-01",
+      "end_date": "2024-06-01",
+      "dow": "Saturday",
+      "time": "07:15 AM"
     }
   ]
 }

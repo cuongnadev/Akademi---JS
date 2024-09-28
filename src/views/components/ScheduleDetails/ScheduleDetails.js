@@ -1,5 +1,6 @@
 import { createContainer, formatDate } from '~/utils';
 import { ScheduleItem } from './ScheduleItem';
+import { StudentsController, TeachersController } from '~/controllers';
 
 export class ScheduleDetails {
     constructor(role, id) {
@@ -26,10 +27,43 @@ export class ScheduleDetails {
         this.headerSchedule.append(this.headerScheduleTitle, this.headerScheduleSubTitle);
 
         this.scheduleList.append(this.headerSchedule);
-        this.scheduleItem = new ScheduleItem(role, 'World History', 'Class VII-B', 'Art', 'Monday', '09.00 - 10.00 AM');
-        this.scheduleList.append(this.scheduleItem.render());
+
+        this.createScheduleItem(role, id);
 
         this.container.appendChild(this.scheduleList);
+    }
+
+    async createScheduleItem(role, id) {
+        try {
+            const data =
+                role === 'Teacher'
+                    ? await TeachersController.getTeacherSchedule(id.teacherId)
+                    : await StudentsController.getStudentSchedule(id.studentId);
+
+            if (Array.isArray(data) && data.length > 0) {
+                data.map((course) => {
+                    this.scheduleItem = new ScheduleItem(
+                        role,
+                        course.name,
+                        `Class ${course.class}`,
+                        course.major,
+                        course.dow,
+                        course.time,
+                    );
+                    this.scheduleList.append(this.scheduleItem.render());
+                });
+            } else {
+                const noScheduleMessage = document.createElement('p');
+                noScheduleMessage.className = 'schedule-details-not-schedule';
+                noScheduleMessage.innerText = 'No Schedule';
+                this.scheduleList.append(noScheduleMessage);
+            }
+        } catch (error) {
+            const noScheduleMessage = document.createElement('p');
+            noScheduleMessage.className = 'schedule-details-not-schedule';
+            noScheduleMessage.innerText = 'No Schedule';
+            this.scheduleList.append(noScheduleMessage);
+        }
     }
 
     render() {

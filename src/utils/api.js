@@ -52,4 +52,7 @@ export const apiEndpoint = {
     deleteTeacher(teacherId) {
         return `/api/teachers/${teacherId}`;
     },
+    getCourses() {
+        return `/api/courses`;
+    },
 };

@@ -3,7 +3,7 @@ import { calendarIcon, clockIcon } from '~/constants';
 export class ScheduleItem {
     constructor(role, name, grade, major, day, time) {
         this.container = document.createElement('div');
-        this.container.className = `schedule-item flex flex-col items-start grade-b`;
+        this.container.className = `schedule-item flex flex-col items-start grade-${grade.slice(-1).toLowerCase()}`;
 
         // name course
         this.name = document.createElement('h3');

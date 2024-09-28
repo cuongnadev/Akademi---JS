@@ -114,4 +114,38 @@ export class StudentsController {
             throw new Error(errorMessage);
         }
     }
+
+    static async getStudentSchedule(studentId) {
+        try {
+            const response = await fetch(apiEndpoint.getCourses(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // No body required for GET method
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Get Data failed');
+            }
+
+            const data = await response.json();
+
+            if (data) {
+                // Lọc các khóa học theo studentId
+                const studentCourses = data.filter((course) => course.student_id === studentId);
+                if (studentCourses.length > 0) {
+                    return studentCourses;
+                } else {
+                    throw new Error('No courses for this student');
+                }
+            } else {
+                throw new Error('No course');
+            }
+        } catch (error) {
+            let errorMessage = error.message;
+            throw new Error(errorMessage);
+        }
+    }
 }
