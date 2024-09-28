@@ -19,7 +19,7 @@ export class Students {
 
         // title
         this.titles = document.createElement('div');
-        this.titles.className = 'students-titles flex items-center justify-between';
+        this.titles.className = 'students-titles flex items-center justify-between  gap-8';
         // optionsBox
         this.selectAllStudent = new Checkbox('select-all-students', 'select-all-students', '');
         this.selectAllStudent.render().addEventListener('change', (event) => {

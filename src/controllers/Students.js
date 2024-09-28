@@ -104,7 +104,7 @@ export class StudentsController {
 
             const data = await response.json();
 
-            if (data.length > 0) {
+            if (data) {
                 return data;
             } else {
                 throw new Error('No student');
