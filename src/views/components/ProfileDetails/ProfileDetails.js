@@ -37,7 +37,7 @@ export class ProfileDetails {
             {
                 label: 'Phone:',
                 icon: callIcon,
-                text: `84+ ${role === 'Student' ? this.data.phone_parent : this.data.phone}`,
+                text: `84+ ${role === 'Student' ? this.data.phone_student : this.data.phone}`,
             },
             {
                 label: 'Email:',

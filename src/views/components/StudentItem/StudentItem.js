@@ -1,11 +1,13 @@
 import { callIcon, dotsIcon, emailIcon, placeholder } from '~/constants';
 import { Button, buttonSizes, buttonVariants } from '../Button';
 import { Checkbox } from '../Form';
+import routes from '~/config/routes';
+import { Router } from '~/routes';
 
 export class StudentItem {
     constructor(student) {
         this.container = document.createElement('div');
-        this.container.className = 'student-item-container flex items-center justify-between';
+        this.container.className = 'student-item-container flex items-center justify-between gap-8';
 
         // optionsBox
         this.selectStudentItem = new Checkbox('select-student-item', 'select-student-item', '');
@@ -27,6 +29,11 @@ export class StudentItem {
         this.studentName = document.createElement('p');
         this.studentName.className = 'student-name';
         this.studentName.innerText = student.name;
+
+        this.studentName.addEventListener('click', () => {
+            const detailPath = routes.studentDetail.replace(':studentId', student.id);
+            Router.pushState(detailPath);
+        });
         // student info container
         this.studentInfo = document.createElement('div');
         this.studentInfo.className = 'student-info flex items-center gap-4';

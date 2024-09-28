@@ -112,6 +112,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         flex: 1;
+        cursor: pointer;
     }
 }
 .student-id {
@@ -193,6 +194,10 @@
     padding: 44px 32px;
     border-top: 1px solid $Gray-2;
     position: relative;
+
+    &:hover {
+        background-color: $Background;
+    }
 
     &::after {
         content: "";

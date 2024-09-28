@@ -31,7 +31,7 @@
         color: $Text;
     }
 
-    &-grade {
+    &-grade, &-major {
         padding-bottom: 26px;
         @include font($text-sm, $font-regular);
         color: $Gray-3;
