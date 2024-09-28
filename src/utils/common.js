@@ -2,16 +2,19 @@
  *
  * @param {number} timestamp
  */
-export const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
+export const formatDate = (currentDate) => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    const year = date.getFullYear();
-    const month = date.getMonth().toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-
-    const dateString = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-    return dateString;
+    // Định dạng ngày
+    const formattedDate = currentDate.toLocaleDateString('en-US', options).replace(/\d+/, function (match) {
+        if (match.endsWith('1') && match !== '11') {
+            return `${match}st`;
+        } else if (match.endsWith('2') && match !== '12') {
+            return `${match}nd`;
+        } else if (match.endsWith('3') && match !== '13') {
+            return `${match}rd`;
+        }
+        return `${match}th`;
+    });
+    return formattedDate;
 };

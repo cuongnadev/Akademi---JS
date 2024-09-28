@@ -10,3 +10,5 @@ export * from './StudentItem';
 export * from './TeacherItem';
 export * from './Search';
 export * from './Toast';
+export * from './ProfileDetails';
+export * from './ScheduleDetails';
