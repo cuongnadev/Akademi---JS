@@ -5,6 +5,8 @@ import { Button, buttonSizes, buttonVariants } from '../Button';
 
 export class ScheduleDetails {
     constructor(role, id) {
+        this.isViewMore = false;
+
         this.container = document.createElement('div');
         this.container.className = 'schedule-details flex flex-col';
 
@@ -58,10 +60,11 @@ export class ScheduleDetails {
                         : await TeachersController.getAllTeacherSchedule()
                     : await StudentsController.getStudentSchedule(id.studentId);
 
+            this.fullData = data;
+            this.sliceData = data.slice(0, 4);
             if (Array.isArray(data) && data.length > 0) {
                 if (data.length > 4) {
-                    const sliceData = data.slice(0, 4);
-                    this.renderScheduleItem(role, sliceData);
+                    this.renderScheduleItem(role, this.sliceData);
 
                     this.buttonViewMore = new Button(
                         'View More',
@@ -70,7 +73,7 @@ export class ScheduleDetails {
                         buttonVariants.filled,
                         buttonSizes.md,
                         'schedule-details-view-more',
-                        () => {},
+                        this.toggleViewMore.bind(this),
                     );
                     this.container.append(this.buttonViewMore.render());
                 } else {
@@ -88,6 +91,18 @@ export class ScheduleDetails {
             noScheduleMessage.innerText = 'No Schedule';
             console.log(error);
             this.scheduleList.append(noScheduleMessage);
+        }
+    }
+
+    toggleViewMore() {
+        this.isViewMore = !this.isViewMore;
+
+        if (this.isViewMore) {
+            this.renderScheduleItem(this.role, this.fullData);
+            this.buttonViewMore.buttonLabel.innerHTML = 'Hide';
+        } else {
+            this.renderScheduleItem(this.role, this.sliceData);
+            this.buttonViewMore.buttonLabel.innerHTML = 'View More';
         }
     }
 
