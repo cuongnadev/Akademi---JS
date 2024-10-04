@@ -1,11 +1,14 @@
 import { createContainer, formatDate } from '~/utils';
 import { ScheduleItem } from './ScheduleItem';
 import { StudentsController, TeachersController } from '~/controllers';
+import { Button, buttonSizes, buttonVariants } from '../Button';
 
 export class ScheduleDetails {
     constructor(role, id) {
+        this.isViewMore = false;
+
         this.container = document.createElement('div');
-        this.container.className = 'schedule-details';
+        this.container.className = 'schedule-details flex flex-col';
 
         // schedule list
         this.scheduleList = document.createElement('div');
@@ -26,32 +29,56 @@ export class ScheduleDetails {
 
         this.headerSchedule.append(this.headerScheduleTitle, this.headerScheduleSubTitle);
 
-        this.scheduleList.append(this.headerSchedule);
-
         this.createScheduleItem(role, id);
 
         this.container.appendChild(this.scheduleList);
+    }
+
+    renderScheduleItem(role, data) {
+        this.scheduleList.innerHTML = '';
+        this.scheduleList.append(this.headerSchedule);
+
+        data.map((course) => {
+            this.scheduleItem = new ScheduleItem(
+                role,
+                course.name,
+                `Class ${course.class}`,
+                course.major,
+                course.dow,
+                course.time,
+            );
+            this.scheduleList.append(this.scheduleItem.render());
+        });
     }
 
     async createScheduleItem(role, id) {
         try {
             const data =
                 role === 'Teacher'
-                    ? await TeachersController.getTeacherSchedule(id.teacherId)
+                    ? id
+                        ? await TeachersController.getTeacherSchedule(id.teacherId)
+                        : await TeachersController.getAllTeacherSchedule()
                     : await StudentsController.getStudentSchedule(id.studentId);
 
+            this.fullData = data;
+            this.sliceData = data.slice(0, 4);
             if (Array.isArray(data) && data.length > 0) {
-                data.map((course) => {
-                    this.scheduleItem = new ScheduleItem(
-                        role,
-                        course.name,
-                        `Class ${course.class}`,
-                        course.major,
-                        course.dow,
-                        course.time,
+                if (data.length > 4) {
+                    this.renderScheduleItem(role, this.sliceData);
+
+                    this.buttonViewMore = new Button(
+                        'View More',
+                        null,
+                        null,
+                        buttonVariants.filled,
+                        buttonSizes.md,
+                        'schedule-details-view-more',
+                        this.toggleViewMore.bind(this),
                     );
-                    this.scheduleList.append(this.scheduleItem.render());
-                });
+                    this.container.append(this.buttonViewMore.render());
+                } else {
+                    this.renderScheduleItem(role, data);
+                }
             } else {
                 const noScheduleMessage = document.createElement('p');
                 noScheduleMessage.className = 'schedule-details-not-schedule';
@@ -62,7 +89,20 @@ export class ScheduleDetails {
             const noScheduleMessage = document.createElement('p');
             noScheduleMessage.className = 'schedule-details-not-schedule';
             noScheduleMessage.innerText = 'No Schedule';
+            console.log(error);
             this.scheduleList.append(noScheduleMessage);
+        }
+    }
+
+    toggleViewMore() {
+        this.isViewMore = !this.isViewMore;
+
+        if (this.isViewMore) {
+            this.renderScheduleItem(this.role, this.fullData);
+            this.buttonViewMore.buttonLabel.innerHTML = 'Hide';
+        } else {
+            this.renderScheduleItem(this.role, this.sliceData);
+            this.buttonViewMore.buttonLabel.innerHTML = 'View More';
         }
     }
 

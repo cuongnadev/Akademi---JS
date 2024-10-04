@@ -88,7 +88,7 @@ export class TeachersController {
 
     static async getTeacherSchedule(teacherId) {
         try {
-            const response = await fetch(apiEndpoint.getCourses(teacherId), {
+            const response = await fetch(apiEndpoint.getCourses(), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -111,6 +111,34 @@ export class TeachersController {
                 } else {
                     throw new Error('No courses for this teacher');
                 }
+            } else {
+                throw new Error('No course');
+            }
+        } catch (error) {
+            let errorMessage = error.message;
+            throw new Error(errorMessage);
+        }
+    }
+
+    static async getAllTeacherSchedule() {
+        try {
+            const response = await fetch(apiEndpoint.getCourses(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // No body required for GET method
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Get Data failed');
+            }
+
+            const data = await response.json();
+
+            if (data) {
+                return data;
             } else {
                 throw new Error('No course');
             }
