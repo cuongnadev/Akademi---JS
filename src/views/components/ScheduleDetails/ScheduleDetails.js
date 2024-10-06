@@ -1,6 +1,6 @@
 import { createContainer, formatDate } from '~/utils';
 import { ScheduleItem } from './ScheduleItem';
-import { StudentsController, TeachersController } from '~/controllers';
+import { EventsController, StudentsController, TeachersController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants } from '../Button';
 
 export class ScheduleDetails {
@@ -38,14 +38,14 @@ export class ScheduleDetails {
         this.scheduleList.innerHTML = '';
         this.scheduleList.append(this.headerSchedule);
 
-        data.map((course) => {
+        data.map((item) => {
             this.scheduleItem = new ScheduleItem(
                 role,
-                course.name,
-                `Class ${course.class}`,
-                course.major,
-                course.dow,
-                course.time,
+                item.name,
+                `Class ${item.class}`,
+                item.major,
+                item.day ? formatDate(new Date(item.day)) : item.dow,
+                item.time,
             );
             this.scheduleList.append(this.scheduleItem.render());
         });
@@ -57,7 +57,7 @@ export class ScheduleDetails {
                 role === 'Teacher'
                     ? id
                         ? await TeachersController.getTeacherSchedule(id.teacherId)
-                        : await TeachersController.getAllTeacherSchedule()
+                        : await EventsController.getEvents()
                     : await StudentsController.getStudentSchedule(id.studentId);
 
             this.fullData = data;
@@ -80,6 +80,9 @@ export class ScheduleDetails {
                     this.renderScheduleItem(role, data);
                 }
             } else {
+                this.scheduleList.innerHTML = '';
+                this.scheduleList.append(this.headerSchedule);
+
                 const noScheduleMessage = document.createElement('p');
                 noScheduleMessage.className = 'schedule-details-not-schedule';
                 noScheduleMessage.innerText = 'No Schedule';

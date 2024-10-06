@@ -38,7 +38,7 @@ export class Dashboard {
         this.overviews.className = 'overviews-container flex items-center';
 
         this.contentOverview = document.createElement('div');
-        this.contentOverview.className = 'overviews-content flex items-center';
+        this.contentOverview.className = 'overviews-content flex items-center gap-4';
 
         this.overviews.append(this.contentOverview);
 
