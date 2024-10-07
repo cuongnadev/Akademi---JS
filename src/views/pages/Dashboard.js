@@ -1,36 +1,13 @@
 import { Pagination, UnpaidStudentItem } from '../components';
-import { StudentsController } from '~/controllers';
+import { DashboardController, StudentsController } from '~/controllers';
 import { OverviewItem } from '../components/OverviewItem';
 import { studentIcon, teacherIcon, calendarIcon, foodIcon } from '~/constants';
 import { schoolPerformance, schoolCalendar, schoolFinance } from '~/constants';
-const OverviewItemTypes = [
-    {
-        title: 'Students',
-        quantity: 500,
-        icon: studentIcon,
-    },
-    {
-        title: 'Teachers',
-        quantity: 400,
-        icon: teacherIcon,
-    },
-    {
-        title: 'Events',
-        quantity: 300,
-        icon: calendarIcon,
-    },
-    {
-        title: 'Food',
-        quantity: 200,
-        icon: foodIcon,
-    },
-];
 export class Dashboard {
     // Demo to run login
     constructor() {
         this.studentsPerPage = 6;
         this.currentPage = 1;
-
         this.container = document.createElement('div');
         this.container.className = 'dashboard-container flex flex-col justify-start items-center gap-10';
 
@@ -41,12 +18,6 @@ export class Dashboard {
         this.contentOverview.className = 'overviews-content flex items-center gap-4';
 
         this.overviews.append(this.contentOverview);
-
-        OverviewItemTypes.map((item) => {
-            this.contentOverview.append(
-                new OverviewItem().render(item.title, item.quantity, item.icon, `${item.title.toLowerCase()}`),
-            );
-        });
 
         // School Performance
         this.schoolPerformance = document.createElement('div');
@@ -94,6 +65,7 @@ export class Dashboard {
 
         this.container.append(this.overviews, this.schoolPerformance, this.schoolOperations, this.unpaidStudent);
 
+        this.handleData();
         this.handleListUnpaidStudent(StudentsController.getUnpaidStudent());
     }
 
@@ -120,6 +92,37 @@ export class Dashboard {
         studentsToShow.forEach((student) => {
             const unpaidStudentItem = new UnpaidStudentItem(student);
             this.listUnpaidStudent.append(unpaidStudentItem.render());
+        });
+    }
+
+    async handleData() {
+        this.data = await DashboardController.getOverViews();
+        this.overViewItemTypes = [
+            {
+                title: 'Students',
+                quantity: this.data.student || 0,
+                icon: studentIcon,
+            },
+            {
+                title: 'Teachers',
+                quantity: this.data.teacher || 0,
+                icon: teacherIcon,
+            },
+            {
+                title: 'Events',
+                quantity: this.data.event || 0,
+                icon: calendarIcon,
+            },
+            {
+                title: 'Food',
+                quantity: this.data.food || 0,
+                icon: foodIcon,
+            },
+        ];
+        this.overViewItemTypes.map((item) => {
+            this.contentOverview.append(
+                new OverviewItem().render(item.title, item.quantity, item.icon, `${item.title.toLowerCase()}`),
+            );
         });
     }
 
