@@ -704,5 +704,95 @@
       "content": "mentioned you at Programming Homework",
       "date": "2024-09-28"
     }
+  ],
+  "events": [
+    {
+      "id": "101",
+      "class": "VII A",
+      "name": "Science Fair",
+      "major": "Science",
+      "day": "2024-10-5",
+      "time": "09:00 AM"
+    },
+    {
+      "id": "102",
+      "class": "VII B",
+      "name": "Biology Field Trip",
+      "major": "Biology",
+      "day": "2024-10-5",
+      "time": "13:00 PM"
+    },
+    {
+      "id": "103",
+      "class": "VII C",
+      "name": "IT Coding Competition",
+      "major": "IT",
+      "day": "2024-10-15",
+      "time": "07:00 AM"
+    },
+    {
+      "id": "104",
+      "class": "VII B",
+      "name": "Art Exhibition",
+      "major": "Art",
+      "day": "2024-10-18",
+      "time": "15:00 PM"
+    },
+    {
+      "id": "105",
+      "class": "VII C",
+      "name": "Science Symposium",
+      "major": "Science",
+      "day": "2024-10-24",
+      "time": "09:00 AM"
+    },
+    {
+      "id": "106",
+      "class": "VII A",
+      "name": "Biology Workshop",
+      "major": "Biology",
+      "day": "2024-10-24",
+      "time": "17:00 PM"
+    },
+    {
+      "id": "107",
+      "class": "VII B",
+      "name": "Tech Career Day",
+      "major": "IT",
+      "day": "2024-10-24",
+      "time": "07:00 AM"
+    },
+    {
+      "id": "108",
+      "class": "VII A",
+      "name": "Art & Design Competition",
+      "major": "Art",
+      "day": "2024-10-30",
+      "time": "07:00 AM"
+    },
+    {
+      "id": "109",
+      "class": "VII C",
+      "name": "Robotics Expo",
+      "major": "IT",
+      "day": "2024-10-30",
+      "time": "09:00 AM"
+    },
+    {
+      "id": "110",
+      "class": "VII B",
+      "name": "Environmental Awareness Week",
+      "major": "Science and Biology",
+      "day": "2024-10-30",
+      "time": "10:00 AM"
+    },
+    {
+      "id": "111",
+      "class": "VII A",
+      "name": "Interdisciplinary Innovation Day",
+      "major": "IT, Art, Science và Biology",
+      "day": "2024-10-30",
+      "time": "07:00 AM"
+    }
   ]
 }

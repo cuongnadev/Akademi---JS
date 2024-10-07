@@ -1,9 +1,6 @@
 .primary_sidebar {
     width: $sidebar-width;
     min-height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     background-color: $Purple;
 
     &-logo_container {

@@ -1,4 +1,5 @@
 .dashboard-container {
+    padding-right: 50px;
     padding-bottom: 102px;
 }
 .overviews{
@@ -91,6 +92,10 @@
 
     &-title {
         @include font-heading($text-xl);
+    }
+
+    &-student-list {
+        overflow-x: auto;
     }
 
     &-student-item {

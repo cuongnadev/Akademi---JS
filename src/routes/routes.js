@@ -24,6 +24,10 @@ const publicRoutes = [
         path: '',
         component: new PrimaryLayout(),
         children: [
+            { path: config.routes.home, component: Dashboard },
+            { path: config.routes.user, component: User },
+            { path: config.routes.singleUserContact, component: User },
+            { path: config.routes.singleUserMessage, component: User },
             { path: config.routes.students, component: Students },
             { path: config.routes.teachers, component: Teachers },
             { path: config.routes.studentDetail, component: StudentDetail },
@@ -34,16 +38,6 @@ const publicRoutes = [
             { path: config.routes.teacherAddNew, component: AddNewTeacher },
             { path: config.routes.events, component: Events },
             { path: config.routes.notifyActivity, component: NotifyActivity },
-        ],
-    },
-    {
-        path: '',
-        component: new SecondaryLayout(),
-        children: [
-            { path: config.routes.home, component: Dashboard },
-            { path: config.routes.user, component: User },
-            { path: config.routes.singleUserContact, component: User },
-            { path: config.routes.singleUserMessage, component: User },
         ],
     },
     { path: config.routes.login, component: new Login() },

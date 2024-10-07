@@ -39,6 +39,47 @@
             @include font-heading($text-xl);
         }
 
+        & .dot-events {
+            position: absolute;
+            left: 50%;
+            bottom: 27px;
+            transform: translateX(-50%);
+        }
+
+        & .dot-events-item {
+            min-width: 18px;
+            min-height: 18px;
+            border-radius: 18px;
+            flex-shrink: 0;
+        }
+
+        & .dot-events-item.class-a {
+            background-color: $Orange;
+        }
+
+        & .dot-events-item.class-b {
+            background-color: $Yellow;
+        }
+
+        & .dot-events-item.class-c {
+            background-color: $Purple;
+        }
+
+        & .dot-events.more .dot-events-item:not(:first-child) {
+            margin-left: -6px;
+        }
+
+        & .dot-events.more .dot-events-item {
+            width: 24px;
+            height: 24px;
+        }
+        & .dot-events.more .dot-events-item.more {
+            color: $White;
+            background-color: $Text;
+            letter-spacing: 1.5px;
+            @include font($text-xs, $font-semibold);
+        }
+
         &:hover {
             background: $Purple-10;
         }
