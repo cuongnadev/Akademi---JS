@@ -1,8 +1,9 @@
 import { Pagination, UnpaidStudentItem } from '../components';
-import { DashboardController, StudentsController } from '~/controllers';
+import { DashboardController } from '~/controllers';
 import { OverviewItem } from '../components/OverviewItem';
 import { studentIcon, teacherIcon, calendarIcon, foodIcon } from '~/constants';
 import { schoolPerformance, schoolCalendar, schoolFinance } from '~/constants';
+import { StudentsRepository } from '~/models/repositories';
 export class Dashboard {
     // Demo to run login
     constructor() {
@@ -66,7 +67,7 @@ export class Dashboard {
         this.container.append(this.overviews, this.schoolPerformance, this.schoolOperations, this.unpaidStudent);
 
         this.handleData();
-        this.handleListUnpaidStudent(StudentsController.getUnpaidStudent());
+        this.handleListUnpaidStudent(StudentsRepository.getUnpaidStudent());
     }
 
     async handleListUnpaidStudent(data) {

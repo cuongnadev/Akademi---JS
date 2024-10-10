@@ -1,7 +1,7 @@
 import { dropdownIcon } from '~/constants';
 import { Button, buttonSizes, buttonVariants, ScheduleDetails } from '../components';
 import { createContainer } from '~/utils';
-import { EventsController } from '~/controllers';
+import { EventsRepository } from '~/models/repositories';
 
 const monthNames = [
     'January',
@@ -105,7 +105,7 @@ export class Events {
         const prevMonthDays = new Date(year, month, 0).getDate();
 
         // data events
-        const data = await EventsController.getEvents();
+        const data = await EventsRepository.getEvents();
 
         // Hàm lọc sự kiện theo ngày
         const filterEventsByDay = (day) => {

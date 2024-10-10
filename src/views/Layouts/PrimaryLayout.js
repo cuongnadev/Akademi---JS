@@ -1,5 +1,5 @@
+import { AdminRepository } from '~/models/repositories';
 import { NavSidebar, Header } from './Components';
-import { PrimaryLayoutController } from '~/controllers/PrimaryLayout';
 export class PrimaryLayout {
     constructor() {
         // Global container
@@ -19,7 +19,7 @@ export class PrimaryLayout {
         // Header
         this.header = new Header();
         this.header.container.classList.add('primary');
-        this.header.headerActions.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
+        this.header.headerActions.callData(AdminRepository.getAdmin(this.email, this.password));
 
         // Navigation sidebar
         this.navSidebar = new NavSidebar();

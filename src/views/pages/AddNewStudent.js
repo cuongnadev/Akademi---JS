@@ -1,6 +1,6 @@
-import { StudentsController } from '~/controllers';
-import { Button, buttonSizes, buttonVariants, Checkbox, Input, Toast } from '../components';
+import { Button, buttonSizes, buttonVariants, Input, Toast } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
+import { StudentsRepository } from '~/models/repositories';
 export class AddNewStudent {
     constructor() {
         this.name = 'Add New Student';
@@ -365,7 +365,7 @@ export class AddNewStudent {
                 return;
             }
         }
-        StudentsController.addStudent(studentData);
+        StudentsRepository.addStudent(studentData);
     }
 
     getClassName() {

@@ -1,6 +1,6 @@
-import { TeachersController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants, Input, Toast } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
+import { TeachersRepository } from '~/models/repositories';
 
 export class AddNewTeacher {
     constructor() {
@@ -300,7 +300,7 @@ export class AddNewTeacher {
                 return;
             }
         }
-        TeachersController.addTeacher(teacherData);
+        TeachersRepository.addTeacher(teacherData);
     }
 
     getClassName() {

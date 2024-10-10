@@ -1,6 +1,6 @@
 import routes from '~/config/routes';
 import { Checkbox, Pagination, SearchActionsPanel, StudentItem } from '../components';
-import { StudentsController } from '~/controllers';
+import { StudentsRepository } from '~/models/repositories';
 
 export class Students {
     constructor() {
@@ -82,7 +82,7 @@ export class Students {
 
         this.container.append(this.searchActionsPanel.render(), this.studentsList);
 
-        this.handleListStudents(StudentsController.getStudents());
+        this.handleListStudents(StudentsRepository.getStudents());
     }
 
     async handleListStudents(data) {

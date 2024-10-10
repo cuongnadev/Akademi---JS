@@ -1,6 +1,6 @@
-import { createContainer } from '~/utils';
 import { NavSidebar, Header, headerActions, RightSidebar } from './Components';
 import { PrimaryLayoutController } from '~/controllers/PrimaryLayout';
+import { AdminRepository } from '~/models/repositories';
 export class SecondaryLayout {
     constructor() {
         // Global container
@@ -20,7 +20,7 @@ export class SecondaryLayout {
         // Header
         this.header = new Header();
         this.header.container.classList.add('secondary');
-        this.header.headerActions.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
+        this.header.headerActions.callData(AdminRepository.getAdmin(this.email, this.password));
 
         // Navigation sidebar
         this.navSidebar = new NavSidebar();
@@ -31,15 +31,15 @@ export class SecondaryLayout {
         this.contentContainer.className = 'content-container flex-1';
         this.globalContainer.append(this.contentContainer);
 
-        // SidebarRight
-        this.headerActions = new headerActions();
-        this.headerActions.callData(PrimaryLayoutController.getDataProfile(this.email, this.password));
-        this.RightSidebar = new RightSidebar();
-        this.childrenRightSidebar = document.createElement('div');
-        this.childrenRightSidebar.className = 'right-sidebar-children-container';
-        // Demo
-        this.childrenRightSidebar.innerText = 'Demo children';
-        this.globalContainer.append(this.RightSidebar.render(this.headerActions.render(), this.childrenRightSidebar));
+        // // SidebarRight
+        // this.headerActions = new headerActions();
+        // this.headerActions.callData(AdminRepository.getAdmin(this.email, this.password));
+        // this.RightSidebar = new RightSidebar();
+        // this.childrenRightSidebar = document.createElement('div');
+        // this.childrenRightSidebar.className = 'right-sidebar-children-container';
+        // // Demo
+        // this.childrenRightSidebar.innerText = 'Demo children';
+        // this.globalContainer.append(this.RightSidebar.render(this.headerActions.render(), this.childrenRightSidebar));
     }
 
     render(childNode) {

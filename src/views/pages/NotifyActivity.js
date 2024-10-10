@@ -1,5 +1,5 @@
-import { NotifyActivityController } from '~/controllers';
-import { createContainer, formatDate } from '~/utils';
+import { NotifyActivityRepository } from '~/models/repositories';
+import { formatDate } from '~/utils';
 
 export class NotifyActivity {
     constructor() {
@@ -106,7 +106,7 @@ export class NotifyActivity {
     }
 
     async handleData() {
-        this.timelineData = await NotifyActivityController.getNotifyActivitys();
+        this.timelineData = await NotifyActivityRepository.getNotifyActivitys();
         this.getLatestNotifications(this.timelineData);
     }
 

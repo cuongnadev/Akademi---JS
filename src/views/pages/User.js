@@ -1,7 +1,7 @@
 import { callIcon, emailIcon, locationIcon, masking1, placeholder } from '~/constants';
-import { UserController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants, Input } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
+import { AdminRepository } from '~/models/repositories';
 
 export class User {
     constructor() {
@@ -11,7 +11,7 @@ export class User {
         this.container.className = 'user-dashboard-container flex flex-col gap-10';
 
         // get User
-        this.user = UserController.getUser();
+        this.user = AdminRepository.getUser();
 
         // profile
         this.profile = document.createElement('div');
@@ -267,7 +267,7 @@ export class User {
             image: this.imageUrl,
         };
 
-        UserController.updatedUser(updatedUser);
+        AdminRepository.updatedUser(updatedUser);
     }
 
     render() {

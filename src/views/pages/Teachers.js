@@ -1,6 +1,7 @@
 import { Pagination, SearchActionsPanel, TeacherItem } from '../components';
 import { TeachersController } from '~/controllers';
 import config from '~/config';
+import { TeachersRepository } from '~/models/repositories';
 
 export class Teachers {
     constructor() {
@@ -28,7 +29,7 @@ export class Teachers {
 
         this.container.append(this.searchActionsPanel.render(), this.teachersList);
 
-        this.handleListTeachers(TeachersController.getTeachers());
+        this.handleListTeachers(TeachersRepository.getTeachers());
     }
 
     async handleListTeachers(data) {
