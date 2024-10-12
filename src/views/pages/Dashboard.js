@@ -58,9 +58,7 @@ export class Dashboard {
         this.listUnpaidStudent.className = 'unpaid-student-list flex flex-col';
 
         // pagination
-        this.pagination = new Pagination((currentPage) =>
-            DashboardController.handlePageChange(this.currentPage, currentPage, this),
-        );
+        this.pagination = new Pagination((currentPage) => DashboardController.handlePageChange(currentPage, this));
 
         // Unpaid Student Container
         this.unpaidStudent = document.createElement('div');

@@ -43,9 +43,14 @@ export class DashboardController {
     }
 
     // Function called on page change
-    static handlePageChange(prePage, currentPage, dashboard) {
-        prePage = currentPage;
-        this.updateStudentList(currentPage, dashboard.studentsPerPage, dashboard.data, dashboard.listUnpaidStudent);
+    static handlePageChange(currentPage, dashboard) {
+        dashboard.currentPage = currentPage;
+        this.updateStudentList(
+            dashboard.currentPage,
+            dashboard.studentsPerPage,
+            dashboard.data,
+            dashboard.listUnpaidStudent,
+        );
     }
 
     // Update student list based on current page

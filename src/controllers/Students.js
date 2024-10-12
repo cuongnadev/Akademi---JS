@@ -1,151 +1,44 @@
-import routes from '~/config/routes';
-import { Router } from '~/routes';
-import { apiEndpoint } from '~/utils';
-import { Toast } from '~/views';
+import { StudentItem } from '../views/components';
+import { StudentsRepository } from '~/models/repositories';
 
 export class StudentsController {
-    static async getUnpaidStudent() {
-        try {
-            const response = await fetch(apiEndpoint.getStudents(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // No body required for GET method
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Get Data failed');
-            }
-
-            const data = await response.json();
-
-            const unpaidStudents = data.filter((student) => student.unpaidAmount > 0);
-
-            if (unpaidStudents.length > 0) {
-                return unpaidStudents;
-            } else {
-                throw new Error('No unpaid students');
-            }
-        } catch (error) {
-            let errorMessage = error.message;
-            throw new Error(errorMessage);
-        }
+    static async handleListStudents(student) {
+        student.data = await StudentsRepository.getStudents();
+        this.updateStudentsList(student.currentPage, student.studentsPerPage, student.data, student.list);
     }
 
-    static async getStudents() {
-        try {
-            const response = await fetch(apiEndpoint.getStudents(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // No body required for GET method
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Get Data failed');
-            }
-
-            const data = await response.json();
-
-            if (data.length > 0) {
-                return data;
-            } else {
-                throw new Error('No students');
-            }
-        } catch (error) {
-            let errorMessage = error.message;
-            throw new Error(errorMessage);
-        }
-    }
-    static async addStudent(data) {
-        try {
-            const response = await fetch(apiEndpoint.postStudent(), {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to save data');
-            }
-
-            Toast.render({ title: 'Success', message: 'Add new successfully', type: 'SUCCESS' });
-            setTimeout(() => {
-                Router.pushState(routes.students);
-            }, 2000);
-        } catch (error) {
-            let errorMessage = error.message;
-            if (errorMessage) {
-                Toast.render({ title: 'Error', message: errorMessage, type: 'ERROR' });
-            }
-        }
+    // Function called on page change
+    static handlePageChange(currentPage, student) {
+        student.currentPage = currentPage;
+        this.updateStudentsList(student.currentPage, student.studentsPerPage, student.data, student.list);
     }
 
-    static async getStudentById(studentId) {
-        try {
-            const response = await fetch(apiEndpoint.getStudent(studentId), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // No body required for GET method
-            });
+    // Update student list based on current page
+    static updateStudentsList(currentPage, studentsPerPage, data, list) {
+        const start = (currentPage - 1) * studentsPerPage;
+        const end = start + studentsPerPage;
+        const studentsToShow = data.slice(start, end);
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Get Data failed');
-            }
+        list.innerHTML = '';
 
-            const data = await response.json();
-
-            if (data) {
-                return data;
-            } else {
-                throw new Error('No student');
-            }
-        } catch (error) {
-            let errorMessage = error.message;
-            throw new Error(errorMessage);
-        }
+        // Show
+        studentsToShow.forEach((student) => {
+            const studentItem = new StudentItem(student);
+            list.append(studentItem.render());
+        });
     }
 
-    static async getStudentSchedule(studentId) {
-        try {
-            const response = await fetch(apiEndpoint.getCourses(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // No body required for GET method
-            });
+    static toggleAllStudents(isChecked) {
+        const studentItems = document.querySelectorAll('.select-student-item input[type="checkbox"]');
+        studentItems.forEach((checkBox) => {
+            checkBox.checked = isChecked;
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Get Data failed');
-            }
-
-            const data = await response.json();
-
-            if (data) {
-                // Lọc các khóa học theo studentId
-                const studentCourses = data.filter((course) => course.student_id === studentId);
-                if (studentCourses.length > 0) {
-                    return studentCourses;
-                } else {
-                    throw new Error('No courses for this student');
-                }
+            const studentContainer = checkBox.closest('.student-item-container');
+            if (isChecked) {
+                studentContainer.classList.add('active');
             } else {
-                throw new Error('No course');
+                studentContainer.classList.remove('active');
             }
-        } catch (error) {
-            let errorMessage = error.message;
-            throw new Error(errorMessage);
-        }
+        });
     }
 }

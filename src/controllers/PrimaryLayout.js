@@ -1,33 +1,23 @@
-import { apiEndpoint } from '~/utils';
+import { AdminRepository } from '~/models/repositories';
+import { Header, NavSidebar } from '~/views';
 
 export class PrimaryLayoutController {
     //
-    static async getDataProfile(email, password) {
-        try {
-            const response = await fetch(apiEndpoint.adminAuthentication(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // No body required for GET method
-            });
+    static initContent(globalContainer, contentContainer, header) {
+        const admin = JSON.parse(localStorage.getItem('admin')) || JSON.parse(sessionStorage.getItem('admin'));
+        const email = admin.email;
+        const password = admin.password;
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Get Data failed');
-            }
+        // Header
+        header.container.classList.add('primary');
+        header.headerActions.callData(AdminRepository.getAdmin(email, password));
 
-            const data = await response.json();
+        // Navigation sidebar
+        const navSidebar = new NavSidebar();
+        globalContainer.append(navSidebar.render());
 
-            const admin = data.find((user) => user.email === email && user.password === password);
-            if (admin) {
-                return admin;
-            } else {
-                throw new Error('No admin');
-            }
-        } catch (error) {
-            let errorMessage = error.message;
-            throw new Error(errorMessage);
-        }
+        // Content container
+        contentContainer.className = 'content-container flex-1';
+        globalContainer.append(contentContainer);
     }
 }

@@ -1,6 +1,9 @@
+import { NotifyActivityRepository } from '~/models/repositories';
 import { formatDate } from '~/utils';
 
 export class NotifyActivityController {
+    static groupItemContainer;
+
     // Hàm để kiểm tra xem thông báo thuộc ngày hôm nay, hôm qua, hay ngày cụ thể
     static categorizeDate(date) {
         const today = new Date();
@@ -32,8 +35,8 @@ export class NotifyActivityController {
             const category = this.categorizeDate(dateObject);
 
             if (category !== currentGroup) {
-                const groupItemContainer = document.createElement('div');
-                groupItemContainer.className = 'timeline-group  flex flex-col items-start gap-6';
+                this.groupItemContainer = document.createElement('div');
+                this.groupItemContainer.className = 'timeline-group  flex flex-col items-start gap-6';
 
                 currentGroup = category;
 
@@ -42,9 +45,9 @@ export class NotifyActivityController {
                 groupTitle.className = 'timeline-title text-lg font-bold';
                 groupTitle.innerText = currentGroup;
 
-                groupItemContainer.append(groupTitle);
+                this.groupItemContainer.append(groupTitle);
 
-                listItemContainer.append(groupItemContainer);
+                listItemContainer.append(this.groupItemContainer);
             }
 
             const formattedDate = formatDate(dateObject);
@@ -68,11 +71,14 @@ export class NotifyActivityController {
                 imageContainer.className = 'timeline-images flex items-center';
 
                 item.contentImages.forEach((imageSrc) => {
+                    const imgBox = document.createElement('figure');
+                    imgBox.className = 'flex items-center justify-center';
                     const img = document.createElement('img');
                     img.src = imageSrc;
                     img.alt = 'Timeline Image';
                     img.className = 'timeline-image';
-                    imageContainer.appendChild(img);
+                    imgBox.appendChild(img);
+                    imageContainer.appendChild(imgBox);
                 });
 
                 itemContentContainer.append(textContent, imageContainer);
@@ -86,7 +92,7 @@ export class NotifyActivityController {
             this.groupItemContainer.append(itemContentContainer);
         });
 
-        container.appendChild(this.listItemContainer);
+        container.appendChild(listItemContainer);
     }
 
     static getLatestNotifications(data, container) {

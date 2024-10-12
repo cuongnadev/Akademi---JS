@@ -2,6 +2,7 @@ import { callIcon, emailIcon, locationIcon, masking1, placeholder } from '~/cons
 import { Button, buttonSizes, buttonVariants, Input } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
 import { AdminRepository } from '~/models/repositories';
+import { UserController } from '~/controllers';
 
 export class User {
     constructor() {
@@ -243,7 +244,7 @@ export class User {
             buttonVariants.filled,
             buttonSizes.sm,
             'form-edit-update-btn',
-            () => this.handleUpdate(),
+            () => UserController.handleUpdate(this),
         );
         // toast
         this.toast = document.createElement('div');
@@ -254,20 +255,6 @@ export class User {
 
     getClassName() {
         return this.name;
-    }
-
-    handleUpdate() {
-        const updatedUser = {
-            id: this.user.id,
-            firstName: this.firstNameInput.input.value,
-            lastName: this.lastNameInput.input.value,
-            email: this.emailInput.input.value,
-            phone: this.phoneInput.input.value,
-            address: this.addressInput.value,
-            image: this.imageUrl,
-        };
-
-        AdminRepository.updatedUser(updatedUser);
     }
 
     render() {
