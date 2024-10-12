@@ -1,6 +1,6 @@
-import { LoginController } from '~/controllers';
 import { publicRoutes } from './routes';
 import { Admin } from '~/models/dto';
+import { AdminRepository } from '~/models/repositories';
 
 export class Router {
     constructor() {
@@ -16,7 +16,7 @@ export class Router {
         // get data from local storage
         let admin = localStorage.getItem('admin');
         if (admin) {
-            LoginController.authentication(new Admin(JSON.parse(admin)), {
+            AdminRepository.authentication(new Admin(JSON.parse(admin)), {
                 isKeepLogged: true, // true cause data is from local storage
                 autoNavigate: false, // do not automatically redirect after authentication
                 isAlert: false, // do not show notification or warning after authentication
@@ -28,7 +28,7 @@ export class Router {
         // get data from session storage
         admin = sessionStorage.getItem('admin');
         if (admin) {
-            LoginController.authentication(new Admin(JSON.parse(admin)), {
+            AdminRepository.authentication(new Admin(JSON.parse(admin)), {
                 isKeepLogged: false,
                 autoNavigate: false,
                 isAlert: false,

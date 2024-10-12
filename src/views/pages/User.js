@@ -1,7 +1,8 @@
 import { callIcon, emailIcon, locationIcon, masking1, placeholder } from '~/constants';
-import { UserController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants, Input } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
+import { AdminRepository } from '~/models/repositories';
+import { UserController } from '~/controllers';
 
 export class User {
     constructor() {
@@ -11,14 +12,14 @@ export class User {
         this.container.className = 'user-dashboard-container flex flex-col gap-10';
 
         // get User
-        this.user = UserController.getUser();
+        this.user = AdminRepository.getUser();
 
         // profile
         this.profile = document.createElement('div');
         this.profile.className = 'user-dashboard-profile';
 
         // image background
-        this.image = document.createElement('div');
+        this.image = document.createElement('figure');
         this.image.className = 'user-dashboard-profile-image flex';
         this.image.innerHTML = `<img src=${masking1} alt='' />`;
 
@@ -96,7 +97,7 @@ export class User {
         this.infoUser.append(this.infoCard, this.phone, this.email);
 
         // avatar
-        this.avatar = document.createElement('div');
+        this.avatar = document.createElement('figure');
         this.avatar.className = 'user-dashboard-profile-avatar flex items-center justify-center';
         this.avatar.innerHTML = `<img src=${this.user.image ? this.user.image : placeholder} alt='' />`;
 
@@ -243,7 +244,7 @@ export class User {
             buttonVariants.filled,
             buttonSizes.sm,
             'form-edit-update-btn',
-            () => this.handleUpdate(),
+            () => UserController.handleUpdate(this),
         );
         // toast
         this.toast = document.createElement('div');
@@ -254,20 +255,6 @@ export class User {
 
     getClassName() {
         return this.name;
-    }
-
-    handleUpdate() {
-        const updatedUser = {
-            id: this.user.id,
-            firstName: this.firstNameInput.input.value,
-            lastName: this.lastNameInput.input.value,
-            email: this.emailInput.input.value,
-            phone: this.phoneInput.input.value,
-            address: this.addressInput.value,
-            image: this.imageUrl,
-        };
-
-        UserController.updatedUser(updatedUser);
     }
 
     render() {

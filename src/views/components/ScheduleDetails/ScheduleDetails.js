@@ -2,6 +2,7 @@ import { createContainer, formatDate } from '~/utils';
 import { ScheduleItem } from './ScheduleItem';
 import { EventsController, StudentsController, TeachersController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants } from '../Button';
+import { EventsRepository, StudentsRepository, TeachersRepository } from '~/models/repositories';
 
 export class ScheduleDetails {
     constructor(role, id) {
@@ -56,9 +57,9 @@ export class ScheduleDetails {
             const data =
                 role === 'Teacher'
                     ? id
-                        ? await TeachersController.getTeacherSchedule(id.teacherId)
-                        : await EventsController.getEvents()
-                    : await StudentsController.getStudentSchedule(id.studentId);
+                        ? await TeachersRepository.getTeacherSchedule(id.teacherId)
+                        : await EventsRepository.getEvents()
+                    : await StudentsRepository.getStudentSchedule(id.studentId);
 
             this.fullData = data;
             this.sliceData = data.slice(0, 4);
@@ -89,6 +90,8 @@ export class ScheduleDetails {
                 this.scheduleList.append(noScheduleMessage);
             }
         } catch (error) {
+            this.scheduleList.innerHTML = '';
+            this.scheduleList.append(this.headerSchedule);
             const noScheduleMessage = document.createElement('p');
             noScheduleMessage.className = 'schedule-details-not-schedule';
             noScheduleMessage.innerText = 'No Schedule';

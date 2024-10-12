@@ -1,7 +1,7 @@
 import config from '~/config';
 
 // layouts
-import { PrimaryLayout, SecondaryLayout } from '~/views/Layouts';
+import { PrimaryLayout } from '~/views/Layouts';
 
 // pages
 import {

@@ -2,7 +2,7 @@ import { createContainer } from '~/utils';
 import { LoginForm, RegisterForm } from '../components';
 import { LoginLayout } from '../Layouts';
 import { Admin } from '~/models/dto';
-import { LoginController } from '~/controllers';
+import { AdminRepository } from '~/models/repositories';
 
 export class Login {
     constructor(isRegister = false) {
@@ -21,7 +21,7 @@ export class Login {
 
             if (!isRegister) {
                 console.log(this.formData.keepLoggedCheckbox.checkbox.checked);
-                LoginController.authentication(
+                AdminRepository.authentication(
                     new Admin({
                         email: this.formData.emailInput.input.value,
                         password: this.formData.passwordInput.input.value,
@@ -29,7 +29,7 @@ export class Login {
                     { isKeepLogged: this.formData.keepLoggedCheckbox.checkbox.checked },
                 );
             } else {
-                LoginController.register(
+                AdminRepository.register(
                     new Admin({
                         firstName: this.formData.firstNameInput.input.value,
                         lastName: this.formData.lastNameInput.input.value,

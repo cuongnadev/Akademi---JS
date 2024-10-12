@@ -8,21 +8,24 @@ export class TeacherItem {
         this.container = document.createElement('div');
         this.container.className = 'teacher-item-container flex flex-col items-center';
 
-        this.container.addEventListener('click', () => {
-            const detailPath = routes.teacherDetail.replace(':teacherId', teacher.id);
-            Router.pushState(detailPath);
-        });
-
+        // avatar frame
+        this.avatarFrame = document.createElement('figure');
+        this.avatarFrame.className = 'flex items-center justify-center';
         // avatar
         this.avatar = document.createElement('img');
         this.avatar.className = 'teacher-item-avatar';
         this.avatar.src = teacher.avatar ? teacher.avatar : placeholder;
         this.avatar.alt = '';
+        this.avatarFrame.append(this.avatar);
 
         // name
         this.teacherName = document.createElement('h3');
         this.teacherName.className = 'teacher-item-name';
         this.teacherName.innerText = teacher.name;
+        this.teacherName.addEventListener('click', () => {
+            const detailPath = routes.teacherDetail.replace(':teacherId', teacher.id);
+            Router.pushState(detailPath);
+        });
 
         // major
         this.major = document.createElement('p');
@@ -66,7 +69,7 @@ export class TeacherItem {
             () => {},
         ).render();
 
-        this.container.append(this.avatar, this.teacherName, this.major, this.contact, this.actions);
+        this.container.append(this.avatarFrame, this.teacherName, this.major, this.contact, this.actions);
     }
 
     render() {

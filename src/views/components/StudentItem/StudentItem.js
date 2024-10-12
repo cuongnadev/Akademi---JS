@@ -20,11 +20,16 @@ export class StudentItem {
         });
 
         // student info
+        // avatar frame
+        this.studentAvatarFrame = document.createElement('figure');
+        this.studentAvatarFrame.className = 'flex items-center justify-center';
         // avatar
         this.studentAvatar = document.createElement('img');
         this.studentAvatar.className = 'student-avatar';
         student.avatar ? (this.studentAvatar.src = student.avatar) : (this.studentAvatar.src = placeholder);
         this.studentAvatar.alt = '';
+        this.studentAvatarFrame.append(this.studentAvatar);
+
         // name
         this.studentName = document.createElement('p');
         this.studentName.className = 'student-name';
@@ -37,7 +42,7 @@ export class StudentItem {
         // student info container
         this.studentInfo = document.createElement('div');
         this.studentInfo.className = 'student-info flex items-center gap-4';
-        this.studentInfo.append(this.studentAvatar, this.studentName);
+        this.studentInfo.append(this.studentAvatarFrame, this.studentName);
 
         // student ID
         this.studentID = document.createElement('p');

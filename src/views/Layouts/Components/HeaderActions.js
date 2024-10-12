@@ -42,12 +42,17 @@ export class headerActions {
 
         this.info = createContainer('profile-info flex flex-col items-end', this.name, this.role);
 
+        // avatar frame
+        this.avatarFrame = document.createElement('figure');
+        this.avatarFrame.className = 'flex items-center justify-center';
+        // avatar
         this.avatar = document.createElement('img');
         this.avatar.className = 'avatar';
         this.avatar.src = '';
         this.avatar.alt = '';
+        this.avatarFrame.append(this.avatar);
 
-        this.profile = createContainer('header-profile flex items-center gap-6', this.info, this.avatar);
+        this.profile = createContainer('header-profile flex items-center gap-6', this.info, this.avatarFrame);
 
         this.headerActions = createContainer(
             'header-actions flex gap-5',

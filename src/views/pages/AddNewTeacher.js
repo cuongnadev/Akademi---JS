@@ -1,6 +1,7 @@
-import { TeachersController } from '~/controllers';
 import { Button, buttonSizes, buttonVariants, Input, Toast } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
+import { TeachersRepository } from '~/models/repositories';
+import { AddNewTeacherController } from '~/controllers';
 
 export class AddNewTeacher {
     constructor() {
@@ -263,7 +264,22 @@ export class AddNewTeacher {
             buttonVariants.filled,
             buttonSizes.sm,
             'form-add-action submit',
-            () => this.handleSubmit(),
+            () =>
+                AddNewTeacherController.handleSubmit(
+                    this.lastNameInput.input.value,
+                    this.firstNameInput.input.value,
+                    this.emailInput.input.value,
+                    this.phoneInput.input.value,
+                    this.addressInput.value,
+                    this.imageUrl,
+                    this.dobInput.input.value,
+                    this.pobInput.input.value,
+                    this.universityInput.input.value,
+                    this.startInput.input.value,
+                    this.endInput.input.value,
+                    this.cityInput.input.value,
+                    this.degreeInput.input.value,
+                ),
         );
         this.actions = createContainer(
             'form-add-actions flex items-center gap-6',
@@ -276,31 +292,6 @@ export class AddNewTeacher {
         this.toast.className = 'toast-container';
 
         this.container.append(this.toast, this.formAddTeacher, this.formAddEdu, this.actions);
-    }
-
-    handleSubmit() {
-        const teacherData = {
-            name: `${this.lastNameInput.input.value} ${this.firstNameInput.input.value}`,
-            email: this.emailInput.input.value,
-            phone: this.phoneInput.input.value,
-            address: this.addressInput.value,
-            avatar: this.imageUrl,
-            dob: this.dobInput.input.value,
-            pob: this.pobInput.input.value,
-            university: this.universityInput.input.value,
-            start_date: this.startInput.input.value,
-            end_date: this.endInput.input.value,
-            city: this.cityInput.input.value,
-            major: this.degreeInput.input.value,
-        };
-        // Kiểm tra các trường dữ liệu
-        for (const key in teacherData) {
-            if (!teacherData[key] && key !== 'avatar') {
-                Toast.render({ title: 'Error', message: 'Please enter complete info!', type: 'ERROR' });
-                return;
-            }
-        }
-        TeachersController.addTeacher(teacherData);
     }
 
     getClassName() {
