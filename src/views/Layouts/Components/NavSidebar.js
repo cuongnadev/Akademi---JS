@@ -25,10 +25,14 @@ export class NavSidebar {
         this.container.innerText = '';
 
         // Logo
+        // logo Frame
+        this.logoFrame = document.createElement('figure');
+        this.logoFrame.className = 'flex items-center justify-center';
         // logo element
         this.logoElement = document.createElement('img');
         this.logoElement.className = 'logo';
         this.logoElement.src = logo;
+        this.logoFrame.append(this.logoElement);
         // title logo
         this.logoTitle = document.createElement('p');
         this.logoTitle.className = 'title';
@@ -36,7 +40,7 @@ export class NavSidebar {
         // logo container
         this.logoContainer = createContainer(
             'primary_sidebar-logo_container flex justify-center items-center gap-4',
-            this.logoElement,
+            this.logoFrame,
             this.logoTitle,
         );
 

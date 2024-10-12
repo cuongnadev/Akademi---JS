@@ -15,7 +15,6 @@
         background-color: $White;
         border-radius: 20px;
         position: relative;
-        cursor: pointer;
         transition: all 0.4s ease;
     }
 
@@ -35,6 +34,7 @@
         margin-bottom: 9px;
         @include font-heading($text-xl);
         color: $Text;
+        cursor: pointer;
     }
 
     &-major {

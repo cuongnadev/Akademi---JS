@@ -19,7 +19,7 @@ export class User {
         this.profile.className = 'user-dashboard-profile';
 
         // image background
-        this.image = document.createElement('div');
+        this.image = document.createElement('figure');
         this.image.className = 'user-dashboard-profile-image flex';
         this.image.innerHTML = `<img src=${masking1} alt='' />`;
 
@@ -97,7 +97,7 @@ export class User {
         this.infoUser.append(this.infoCard, this.phone, this.email);
 
         // avatar
-        this.avatar = document.createElement('div');
+        this.avatar = document.createElement('figure');
         this.avatar.className = 'user-dashboard-profile-avatar flex items-center justify-center';
         this.avatar.innerHTML = `<img src=${this.user.image ? this.user.image : placeholder} alt='' />`;
 

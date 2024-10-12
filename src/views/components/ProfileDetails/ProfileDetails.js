@@ -2,6 +2,7 @@ import { callIcon, dotsIcon, emailIcon, locationIcon, masking2, placeholder, use
 import { createContainer } from '~/utils';
 import { Button, buttonSizes, buttonVariants } from '../Button';
 import { StudentsController, TeachersController } from '~/controllers';
+import { StudentsRepository, TeachersRepository } from '~/models/repositories';
 
 export class ProfileDetails {
     constructor(role, id) {
@@ -16,8 +17,8 @@ export class ProfileDetails {
     async init(role, id) {
         this.data =
             role === 'Teacher'
-                ? await TeachersController.getTeacherById(id.teacherId)
-                : await StudentsController.getStudentById(id.studentId);
+                ? await TeachersRepository.getTeacherById(id.teacherId)
+                : await StudentsRepository.getStudentById(id.studentId);
 
         this.createProfileDetails(role);
     }
@@ -61,7 +62,7 @@ export class ProfileDetails {
         ];
 
         // Image background
-        this.image = document.createElement('div');
+        this.image = document.createElement('figure');
         this.image.className = 'profile-details-image flex';
         this.image.innerHTML = `<img src=${masking2} alt='' />`;
 
@@ -198,7 +199,7 @@ export class ProfileDetails {
         );
 
         // Avatar
-        this.avatar = document.createElement('div');
+        this.avatar = document.createElement('figure');
         this.avatar.className = 'profile-details-avatar flex items-center justify-center';
         this.avatar.innerHTML = `<img src=${this.data.avatar ? this.user.avatar : placeholder} alt='' />`;
 
