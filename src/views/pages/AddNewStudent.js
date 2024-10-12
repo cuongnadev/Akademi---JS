@@ -1,6 +1,7 @@
 import { Button, buttonSizes, buttonVariants, Input, Toast } from '../components';
 import { createContainer, handleEmailFormat } from '~/utils';
 import { StudentsRepository } from '~/models/repositories';
+import { AddNewStudentController } from '~/controllers';
 export class AddNewStudent {
     constructor() {
         this.name = 'Add New Student';
@@ -326,7 +327,25 @@ export class AddNewStudent {
             buttonVariants.filled,
             buttonSizes.sm,
             'form-add-action submit',
-            () => this.handleSubmit(),
+            () =>
+                AddNewStudentController.handleSubmit(
+                    this.imageUrl,
+                    this.lastNameInput.input.value,
+                    this.firstNameInput.input.value,
+                    this.dobInput.input.value,
+                    this.pobInput.input.value,
+                    this.classInput.input.value,
+                    this.emailInput.input.value,
+                    this.phoneInput.input.value,
+                    this.addressInput.value,
+                    this.lastNameParentInput.input.value,
+                    this.firstNameParentInput.input.value,
+                    this.emailParentInput.input.value,
+                    this.phoneParentInput.input.value,
+                    this.addressParentInput.value,
+                    this.container.querySelector('input[name="payment-option"]:checked'),
+                    this.container.querySelector('input[name="payment-option"]:checked').value,
+                ),
         );
         this.actions = createContainer(
             'form-add-actions flex items-center gap-6',
@@ -339,33 +358,6 @@ export class AddNewStudent {
         this.toast.className = 'toast-container';
 
         this.container.append(this.toast, this.formAddStudent, this.formParentDetail, this.actions);
-    }
-
-    handleSubmit() {
-        const paymentSelected = this.container.querySelector('input[name="payment-option"]:checked');
-        const studentData = {
-            avatar: this.imageUrl,
-            name: `${this.lastNameInput.input.value} ${this.firstNameInput.input.value}`,
-            date: this.dobInput.input.value,
-            place: this.pobInput.input.value,
-            class: this.classInput.input.value,
-            email_student: this.emailInput.input.value,
-            phone_student: this.phoneInput.input.value,
-            city: this.addressInput.value,
-            parentName: `${this.lastNameParentInput.input.value} ${this.firstNameParentInput.input.value}`,
-            email_parent: this.emailParentInput.input.value,
-            phone_parent: this.phoneParentInput.input.value,
-            address_parent: this.addressParentInput.value,
-            payment: paymentSelected ? paymentSelected.value : null,
-        };
-        // Kiểm tra các trường dữ liệu
-        for (const key in studentData) {
-            if (!studentData[key] && key !== 'avatar') {
-                Toast.render({ title: 'Error', message: 'Please enter complete info!', type: 'ERROR' });
-                return;
-            }
-        }
-        StudentsRepository.addStudent(studentData);
     }
 
     getClassName() {

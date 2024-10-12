@@ -9,4 +9,3 @@ export * from './AddNewStudent';
 export * from './AddNewTeacher';
 export * from './NotifyActivity';
 export * from './ControllerMethods';
-export * from './Login';
