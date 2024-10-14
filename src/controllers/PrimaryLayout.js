@@ -8,6 +8,8 @@ export class PrimaryLayoutController {
         const email = admin.email;
         const password = admin.password;
 
+        globalContainer.innerHTML = '';
+
         // Header
         header.container.classList.add('primary');
         header.headerActions.callData(AdminRepository.getAdmin(email, password));
