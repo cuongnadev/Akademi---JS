@@ -81,7 +81,11 @@ export class Students {
 
         this.studentsList.append(this.titles, this.list, this.pagination.render());
 
-        this.container.append(this.searchActionsPanel.render(), this.studentsList);
+        // toast
+        this.toast = document.createElement('div');
+        this.toast.className = 'toast-container';
+
+        this.container.append(this.toast, this.searchActionsPanel.render(), this.studentsList);
 
         StudentsController.handleListStudents(this);
     }

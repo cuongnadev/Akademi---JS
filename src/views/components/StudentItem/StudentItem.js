@@ -3,6 +3,8 @@ import { Button, buttonSizes, buttonVariants } from '../Button';
 import { Checkbox } from '../Form';
 import routes from '~/config/routes';
 import { Router } from '~/routes';
+import { StudentsRepository } from '~/models/repositories';
+import { Dropdown } from '~/views';
 
 export class StudentItem {
     constructor(student) {
@@ -105,6 +107,15 @@ export class StudentItem {
             'action-more flex items-center',
             () => {},
         );
+        const dropdownLinks = [
+            {
+                label: 'Delete',
+                href: `/students/${student.id}`,
+                action: () => StudentsRepository.deleteStudent(student.id),
+            },
+        ];
+        const actionsDropdown = new Dropdown();
+        actionsDropdown.init(this.actions.render(), dropdownLinks);
 
         // Unpaid Stusent Item Container
         this.container.append(

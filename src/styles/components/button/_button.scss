@@ -9,10 +9,6 @@
     gap: 0.25rem;
     border: 1px solid transparent;
 
-    * {
-        pointer-events: none;
-    }
-
     &:disabled {
         opacity: 0.4;
     }

@@ -27,7 +27,11 @@ export class Teachers {
 
         this.teachersList.append(this.list, this.pagination.render());
 
-        this.container.append(this.searchActionsPanel.render(), this.teachersList);
+        // toast
+        this.toast = document.createElement('div');
+        this.toast.className = 'toast-container';
+
+        this.container.append(this.toast, this.searchActionsPanel.render(), this.teachersList);
 
         TeachersController.handleListTeachers(this);
     }

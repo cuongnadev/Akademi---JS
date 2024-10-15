@@ -197,22 +197,6 @@
       "address_parent": "Thượng Hải, Trung Quốc",
       "payment": "cash",
       "unpaidAmount": 0
-    },
-    {
-      "id": "543d",
-      "avatar": null,
-      "name": "Lê Hồng",
-      "date": "10 January 2005",
-      "place": "Việt Nam",
-      "class": "VII C",
-      "email_student": "hongle@gmail.com",
-      "phone_student": "1112223459",
-      "city": "Hà Lội, Việt Nôm",
-      "parentName": "Trần Khánh",
-      "email_parent": "khanhtran@gmail.com",
-      "phone_parent": "3453452227",
-      "address_parent": "Hà Lội, Việt Nôm",
-      "payment": "cash"
     }
   ],
   "teachers": [
@@ -454,21 +438,6 @@
       "start_date": "1 August 2023",
       "end_date": "1 August 2027",
       "city": "Đà Nẵng, Việt Nam",
-      "major": "IT"
-    },
-    {
-      "id": "17b1",
-      "name": "Chong Jong Cho",
-      "email": "chongjongcho@gmail.com",
-      "phone": "974564333",
-      "address": "Thượng Hải, Trung Quốc",
-      "avatar": null,
-      "dob": "2 January 2005",
-      "pob": "Quảng Bình, Trung Quốc",
-      "university": "VKU",
-      "start_date": "1 January 2024",
-      "end_date": "1 January 2028",
-      "city": "Việt Nam",
       "major": "IT"
     }
   ],

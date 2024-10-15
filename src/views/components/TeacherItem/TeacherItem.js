@@ -2,6 +2,8 @@ import { callIcon, emailIcon, dotsIcon, placeholder } from '~/constants';
 import { Button, buttonSizes, buttonVariants } from '../Button';
 import { Router } from '~/routes';
 import routes from '~/config/routes';
+import { TeachersRepository } from '~/models/repositories';
+import { Dropdown } from '~/views';
 
 export class TeacherItem {
     constructor(teacher) {
@@ -68,6 +70,16 @@ export class TeacherItem {
             'teacher-item-actions',
             () => {},
         ).render();
+
+        const dropdownLinks = [
+            {
+                label: 'Delete',
+                href: `/teachers/${teacher.id}`,
+                action: () => TeachersRepository.deleteTeacher(teacher.id),
+            },
+        ];
+        const actionsDropdown = new Dropdown();
+        actionsDropdown.init(this.actions, dropdownLinks);
 
         this.container.append(this.avatarFrame, this.teacherName, this.major, this.contact, this.actions);
     }
