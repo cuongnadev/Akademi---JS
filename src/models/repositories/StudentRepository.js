@@ -173,4 +173,30 @@ export class StudentsRepository {
             }
         }
     }
+
+    static async updatedStudent(student) {
+        try {
+            const updateResponse = await fetch(apiEndpoint.getStudent(student.id), {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student),
+            });
+
+            if (!updateResponse.ok) {
+                const errorData = await updateResponse.json();
+                throw new Error(errorData.message || 'Update failed');
+            }
+
+            Router.pushState(routes.home);
+        } catch (error) {
+            let errorMessage = error.message;
+            console.log(errorMessage);
+
+            if (errorMessage) {
+                Toast.render({ title: 'Error', message: errorMessage, type: 'ERROR' });
+            }
+        }
+    }
 }

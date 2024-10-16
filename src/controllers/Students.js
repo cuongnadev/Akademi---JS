@@ -41,4 +41,9 @@ export class StudentsController {
             }
         });
     }
+
+    static updateUnpaidStudent(student) {
+        student.unpaidAmount = 0;
+        StudentsRepository.updatedStudent(student);
+    }
 }

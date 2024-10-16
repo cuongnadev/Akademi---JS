@@ -1,5 +1,8 @@
 import { printIcon, userIcon, dotsIcon, placeholder } from '~/constants';
 import { Button, buttonSizes, buttonVariants } from '../Button';
+import { Dropdown } from '~/views';
+import { StudentsRepository } from '~/models/repositories';
+import { StudentsController } from '~/controllers';
 export class UnpaidStudentItem {
     constructor(student) {
         this.unpaidStudentItem = document.createElement('div');
@@ -67,6 +70,15 @@ export class UnpaidStudentItem {
             'unpaid-action-more flex items-center justify-center',
             () => {},
         );
+        const dropdownLinks = [
+            {
+                label: 'Delete',
+                href: `/students/${student.id}`,
+                action: () => StudentsController.updateUnpaidStudent(student),
+            },
+        ];
+        const actionsDropdown = new Dropdown();
+        actionsDropdown.init(this.unpaidActionMore.render(), dropdownLinks);
 
         this.unpaidActions = document.createElement('div');
         this.unpaidActions.className = 'unpaid-student-actions flex items-center gap-8';
