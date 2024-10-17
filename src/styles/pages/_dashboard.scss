@@ -94,13 +94,14 @@
         @include font-heading($text-xl);
     }
 
-    &-student-list {
-        overflow-x: auto;
-    }
-
     &-student-item {
         padding: 28px 32px;
         justify-content: space-between;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: $Purple-10;
+        }
     }
 
     &-student-info {

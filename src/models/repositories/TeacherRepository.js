@@ -147,4 +147,28 @@ export class TeachersRepository {
             throw new Error(errorMessage);
         }
     }
+
+    static async deleteTeacher(teacherID) {
+        try {
+            const response = await fetch(apiEndpoint.deleteTeacher(teacherID), {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                if (errorMessage) {
+                    Toast.render({ title: 'Error', message: errorMessage, type: 'ERROR' });
+                }
+            }
+
+            Router.pushState(routes.teachers);
+        } catch (error) {
+            let errorMessage = error.message;
+            if (errorMessage) {
+                Toast.render({ title: 'Error', message: errorMessage, type: 'ERROR' });
+            }
+        }
+    }
 }

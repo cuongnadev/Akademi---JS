@@ -3,6 +3,11 @@
         padding: 0 50px 40px 0;
     }
 
+    &-title {
+        @include font-heading($text-4xl);
+        color: $Text;
+    }
+
     &-calendar {
         padding: 32px;
         border-radius: 20px;

@@ -1,6 +1,7 @@
 import { bellIcon, gearIcon, placeholder } from '~/constants';
-import { Button, buttonSizes, buttonVariants } from '~/views/components';
+import { Button, buttonSizes, buttonVariants, Dropdown } from '~/views/components';
 import { createContainer } from '~/utils';
+import { AuthController } from '~/controllers';
 
 export class headerActions {
     constructor() {
@@ -45,6 +46,10 @@ export class headerActions {
         // avatar frame
         this.avatarFrame = document.createElement('figure');
         this.avatarFrame.className = 'flex items-center justify-center';
+
+        const dropdownLinks = [{ label: 'Logout', href: '/logout', action: () => AuthController.logout() }];
+        const avatarDropdown = new Dropdown();
+        avatarDropdown.init(this.avatarFrame, dropdownLinks);
         // avatar
         this.avatar = document.createElement('img');
         this.avatar.className = 'avatar';
