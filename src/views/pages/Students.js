@@ -4,6 +4,7 @@ import { StudentsController } from '~/controllers';
 
 export class Students {
     constructor() {
+        this.name = 'Students';
         this.data = [];
         this.studentsPerPage = 6;
         this.currentPage = 1;
@@ -88,6 +89,10 @@ export class Students {
         this.container.append(this.toast, this.searchActionsPanel.render(), this.studentsList);
 
         StudentsController.handleListStudents(this);
+    }
+
+    getClassName() {
+        return this.name;
     }
 
     render() {

@@ -4,6 +4,8 @@ import config from '~/config';
 
 export class Teachers {
     constructor() {
+        this.name = 'Teachers';
+
         this.data = [];
         this.teachersPerPage = 12;
         this.currentPage = 1;
@@ -34,6 +36,10 @@ export class Teachers {
         this.container.append(this.toast, this.searchActionsPanel.render(), this.teachersList);
 
         TeachersController.handleListTeachers(this);
+    }
+
+    getClassName() {
+        return this.name;
     }
 
     render() {
