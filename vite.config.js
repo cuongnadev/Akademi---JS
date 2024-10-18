@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'https://akademi-js.onrender.com/',
+                target: 'https://akademi-js.onrender.com/api',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ''),
             },
