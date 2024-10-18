@@ -1,58 +1,58 @@
 export const apiEndpoint = {
     adminAuthentication() {
         // http request GET
-        return `/api/admins`;
+        return `/admins`;
     },
     register() {
         // http request POST
-        return `/api/admins`;
+        return `/admins`;
     },
     updateUser(userId) {
-        return `/api/admins/${userId}`;
+        return `/admins/${userId}`;
     },
     getStudents() {
-        return `/api/students`;
+        return `/students`;
     },
     getStudent(studentId) {
-        return `/api/students/${studentId}`;
+        return `/students/${studentId}`;
     },
     getTeachers() {
-        return `/api/teachers`;
+        return `/teachers`;
     },
     getTeacher(teacherId) {
-        return `/api/teachers/${teacherId}`;
+        return `/teachers/${teacherId}`;
     },
     getLastestActivitys() {
-        return `/api/notify-activity-lastest`;
+        return `/notify-activity-lastest`;
     },
     getEvents() {
-        return `/api/events`;
+        return `/events`;
     },
     getEvent(date) {
-        return `/api/events/${date}`;
+        return `/events/${date}`;
     },
     postEvents() {
-        return `/api/events`;
+        return `/events`;
     },
     postStudent() {
-        return `/api/students`;
+        return `/students`;
     },
     postTeacher() {
-        return `/api/teachers`;
+        return `/teachers`;
     },
     patchStudent(studentId) {
-        return `/api/students/${studentId}`;
+        return `/students/${studentId}`;
     },
     patchTeacher(teacherId) {
-        return `/api/teachers/${teacherId}`;
+        return `/teachers/${teacherId}`;
     },
     deleteStudent(studentId) {
-        return `/api/students/${studentId}`;
+        return `/students/${studentId}`;
     },
     deleteTeacher(teacherId) {
-        return `/api/teachers/${teacherId}`;
+        return `/teachers/${teacherId}`;
     },
     getCourses() {
-        return `/api/courses`;
+        return `/courses`;
     },
 };
