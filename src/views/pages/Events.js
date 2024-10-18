@@ -19,6 +19,8 @@ const monthNames = [
 ];
 export class Events {
     constructor() {
+        this.name = 'Events';
+
         this.container = document.createElement('div');
         this.container.className = 'events-container flex gap-10';
 
@@ -72,6 +74,10 @@ export class Events {
         this.schedule = new ScheduleDetails('Teacher');
 
         this.container.append(this.calendar, this.schedule.render());
+    }
+
+    getClassName() {
+        return this.name;
     }
 
     render() {

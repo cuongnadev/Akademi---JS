@@ -3,6 +3,8 @@ import { DashboardController } from '~/controllers';
 import { schoolPerformance, schoolCalendar, schoolFinance } from '~/constants';
 export class Dashboard {
     constructor() {
+        this.name = 'Dashboard';
+
         // data
         this.data = [];
         this.dataOverView = [];
@@ -69,6 +71,10 @@ export class Dashboard {
 
         DashboardController.handleData(this.dataOverView, this.contentOverview);
         DashboardController.handleListUnpaidStudent(this);
+    }
+
+    getClassName() {
+        return this.name;
     }
 
     render() {
